@@ -1,0 +1,23 @@
+<div class="row">
+    <div class="col-xs-12">
+        <a href="#" class="list-group-item clearfix" *ngFor="let unit of allItems">
+
+            <span>
+                <img src="{{unit.imagePath}}" class="img-responsive" style="max-height:250px;width:25%;float:left">
+            </span>
+
+            <div class="pull-left " style="max-height:250px;width:25%;float:left">
+                <h4 class="list-group-item-heading">{{unit.name}}</h4>
+                <p class="list-group-item-text">{{unit.description}}</p>
+            </div>
+
+            <div class="product-quantity"><input style="width: 15%;max-height:250px;float:left" type="number" value="1"
+                    min="1"></div>
+                    <button style="background-color: black;width:20%" type="button" class="btn btn-default btn-sm">
+                        <span class="glyphicon glyphicon-shopping-cart"
+                            style="width: 25%;max-height:250px;float:left;"></span> Add to Shopping Cart
+                    </button>
+                
+        </a>
+    </div>
+</div>

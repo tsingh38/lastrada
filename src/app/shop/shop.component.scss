@@ -1,0 +1,50 @@
+// Always be careful with margin collapsing (that's why I put padding on header and footer)
+
+$header-height: 5em;
+$footer-height: 5em;
+
+* {
+  box-sizing: border-box;
+}
+html {
+  background:grey;
+  color: #333;
+  font: 300 100%/1.5 'Open Sans', sans-serif;
+ 
+}
+
+header{
+  font-family: consolas;
+  border: 1px transparent #73AD21;
+}
+h1 {
+  margin: 0;
+  color:grey;
+  font: 700 2em/2 'Josefin Slab', serif;
+  text-align: center;
+  height: 20ex;
+  width:100%;
+  text-shadow: 0.05em 0.05em 0.1em rgba(0, 0, 0, 0.4);
+  border:turquoise;
+  background: url(https://images.pexels.com/photos/531880/pexels-photo-531880.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940);
+   background-repeat: no-repeat;
+}
+
+.main {
+  // This is where the magic happens.
+  min-height: calc(100vh - #{$header-height + $footer-height});
+  background: rgba(#fff, 0.5);
+  border: 1px solid black;
+}
+.footer {
+  height: $footer-height;
+  padding: 0.5em;
+  
+  p {
+    margin: 0.25em 0;
+    color: #fff;
+    font-size: 2em;
+    font-weight: 400;
+    text-align: center;
+  }
+}
