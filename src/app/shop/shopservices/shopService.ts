@@ -2,20 +2,24 @@ import { Unit } from '../catalog/catalog-unit/unit.model';
 import { ItemInOrder } from '../catalog/ItemInOrder';
 
 export class ShopService {
-    itemInorder: ItemInOrder[];
+    itemInorder: ItemInOrder[]=[];
+    localObject:ItemInOrder;
 
 
     quantity: number;
     addUnitFromCatalogToShoppingCart(unit: Unit, quantity: number, size: String) {
-        new ItemInOrder(unit.name, unit.description, unit.imagePath, unit.price, size, quantity);
-        this.itemInorder.push(new ItemInOrder(unit.name, unit.description, unit.imagePath, unit.price, size, quantity));
+        this.localObject =new ItemInOrder(unit.name, unit.description, unit.imagePath, unit.price, size, quantity);
+        this.itemInorder.push(this.localObject);
+        this.localObject=null;
+
 
     }
 
     
 
 
-    addQuantityInaOrderItem(quantity: number) {
-        this.quantity;
-    }
+  getShoppingCartItems() :ItemInOrder[]{
+      console.log(this.itemInorder);
+      return this.itemInorder;
+  }
 }

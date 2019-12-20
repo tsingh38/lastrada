@@ -14,8 +14,11 @@ import { ShopService } from './shop/shopservices/shopService';
 import { FormsModule } from '@angular/forms';
 
 const appRoutes:Routes=[
-  {path:'',component:AppComponent},
-  {path:'\cart', component:CartComponent}
+  {path:'home',component:ShopComponent},
+  {path:'*',component:ShopComponent},
+  {path:'*.*',component:ShopComponent},
+  {path: '',component:ShopComponent},
+{path:'cart', component:CartComponent}
 ];
 @NgModule({
   declarations: [
@@ -29,7 +32,7 @@ const appRoutes:Routes=[
     CartComponent
   ],
   imports: [
-    BrowserModule,NgbModule,FormsModule, RouterModule.forRoot(appRoutes)
+    BrowserModule,NgbModule,RouterModule,FormsModule, RouterModule.forRoot(appRoutes)
   ],
   providers: [ShopService],
   bootstrap: [AppComponent]
