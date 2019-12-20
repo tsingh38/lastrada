@@ -9,31 +9,33 @@
       class="glyphicon glyphicon-user"></span>
   </div>
 
-  <div >
-    <button type="button"
-    class="btn btn-default btn-sm" [routerLink]="['/cart']" (click)="checkIfClickIsWorking()"
-     style="position: absolute;top:2;right:0;margin-top: 1ex;margin-right: 8ex;"
-     >
-      <span class="glyphicon glyphicon-shopping-cart"></span>
-    </button>
-  </div>
+  <div id="btn-cart" class="fr">
+    <a [routerLink]="['/cart']" 
+      style="margin-right: 5ex;"
+     title="View your Shopping Cart">
+      <span>{{quantity}} Items -
+        <span class="amount">€{{price}}</span>
+      </span>
+    </a>
+    </div>
 
-  <div class="nav-wrapper" style="position: absolute;top:0;right:0;margin-top: 2ex; margin-right: 2ex;">
+  <div class="nav-wrapper" style="position: absolute;top:0;right:0;margin-top: 2ex; margin-right: 9ex;">
+    <div class="row">
     <div class="sl-nav">
-      Sprache:
       <ul>
-        <li><b>Deutsch</b> <i class="fa fa-angle-down" aria-hidden="true"></i><span class="caret"></span>
+        <li><b>DE</b> <i class="fa fa-angle-down" aria-hidden="true"></i><span class="caret"></span>
           <div class="triangle"></div>
           <ul>
             <li><i class="sl-flag flag-de">
                 <div id="germany"></div>
-              </i> <span class="active">Deutsch</span></li>
+              </i> <span class="active">DE</span></li>
             <li><i class="sl-flag flag-usa">
                 <div id="germany"></div>
-              </i> <span>Englisch</span></li>
+              </i> <span>EN</span></li>
           </ul>
         </li>
       </ul>
     </div>
+  </div>
   </div>
 </nav>

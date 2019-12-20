@@ -22,9 +22,14 @@ export class CatalogUnitComponent implements OnInit {
   }
 
   processClickOperation(quantityRef:any,refSize:any,unit:Unit){
+  
+
     this.quantitySelectedForUnit=quantityRef.value;
     this.sizeSelectedForUnit='Normal';
+    var quantity:number=this.quantitySelectedForUnit;
+    var price:String=unit.price;
      this.shopService.addUnitFromCatalogToShoppingCart(unit,this.quantitySelectedForUnit,this.sizeSelectedForUnit);
+     this.shopService.updatePriceAndQuantityInCart.next({quantity,price});
   }
 
 }
