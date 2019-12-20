@@ -6,11 +6,24 @@ import { Unit } from './catalog-unit/unit.model';
   styleUrls: ['./catalog.component.scss']
 })
 export class CatalogComponent implements OnInit {
-  allItems:Unit[]=[new Unit("kebab","Delicious Kebab","https://www.foodtempel.de/wp-content/uploads/2019/05/D%C3%B6ner-Kebab-Pita-mit-Krautsalat-678x470.jpg")];
+  allItems:Unit[]=[new Unit("kebab","Delicious Kebab","https://www.foodtempel.de/wp-content/uploads/2019/05/D%C3%B6ner-Kebab-Pita-mit-Krautsalat-678x470.jpg"),
+  new Unit("kebab","Delicious Kebab","https://www.foodtempel.de/wp-content/uploads/2019/05/D%C3%B6ner-Kebab-Pita-mit-Krautsalat-678x470.jpg"),
+  new Unit("kebab","Delicious Kebab","https://www.foodtempel.de/wp-content/uploads/2019/05/D%C3%B6ner-Kebab-Pita-mit-Krautsalat-678x470.jpg"),
+                  new Unit("kebab","Delicious Kebab","https://www.foodtempel.de/wp-content/uploads/2019/05/D%C3%B6ner-Kebab-Pita-mit-Krautsalat-678x470.jpg")];
  //allItems:Unit[]=[new Unit("kebab","beste kebab im welt",".../images/Doener.jpg")];
-  constructor() { }
+ isButtonClicked:boolean; 
+ constructor() { }
 
   ngOnInit() {
+    this.isButtonClicked=false;
+  }
+
+  processClickOperation(){
+    this.isButtonClicked=true;
+  }
+
+  resetButtonClicked(){
+    this.isButtonClicked=false;
   }
 
 }
