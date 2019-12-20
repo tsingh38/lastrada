@@ -43,7 +43,13 @@ export class ShopService {
         
     }
 
-
+    getTotalPriceOfOrder(){
+        var totalPrice=0;
+    for(var existingItem of this.itemInorder){
+        totalPrice=Number(totalPrice)+Number(existingItem.totalPrice);
+    }
+    return Number(totalPrice.toFixed(2));
+}
 
 
     getShoppingCartItems(): ItemInOrder[] {
