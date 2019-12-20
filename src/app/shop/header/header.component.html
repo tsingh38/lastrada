@@ -10,7 +10,10 @@
   </div>
 
   <div class="nav-wrapper">
-    <button type="button" style="position: absolute;top:2;right:0;margin-top: 1ex;margin-right: 8ex;">
+    <button type="button"
+    class="btn btn-default btn-sm" [routerLink]="['/cart']" (click)="checkIfClickIsWorking()"
+     style="position: absolute;top:2;right:0;margin-top: 1ex;margin-right: 8ex;"
+     >
       <span class="glyphicon glyphicon-shopping-cart"></span>
     </button>
   </div>

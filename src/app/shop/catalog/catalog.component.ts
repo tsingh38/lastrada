@@ -1,30 +1,26 @@
 import { Component, OnInit } from '@angular/core';
 import { Unit } from './catalog-unit/unit.model';
+import { ShopService } from '../shopservices/shopService';
 @Component({
   selector: 'app-catalog',
   templateUrl: './catalog.component.html',
   styleUrls: ['./catalog.component.scss']
 })
 export class CatalogComponent implements OnInit {
-  allItems:Unit[]=[new Unit("kebab","Delicious Kebab","https://www.foodtempel.de/wp-content/uploads/2019/05/D%C3%B6ner-Kebab-Pita-mit-Krautsalat-678x470.jpg"),
-  new Unit("kebab","Delicious Kebab","https://www.foodtempel.de/wp-content/uploads/2019/05/D%C3%B6ner-Kebab-Pita-mit-Krautsalat-678x470.jpg"),
-  new Unit("kebab","Delicious Kebab","https://www.foodtempel.de/wp-content/uploads/2019/05/D%C3%B6ner-Kebab-Pita-mit-Krautsalat-678x470.jpg"),
-                  new Unit("kebab","Delicious Kebab","https://www.foodtempel.de/wp-content/uploads/2019/05/D%C3%B6ner-Kebab-Pita-mit-Krautsalat-678x470.jpg")];
+  allItems:Unit[]=[new Unit("kebab","Delicious Kebab","https://www.foodtempel.de/wp-content/uploads/2019/05/D%C3%B6ner-Kebab-Pita-mit-Krautsalat-678x470.jpg","11.00"),
+  new Unit("kebab","Delicious Kebab","https://www.foodtempel.de/wp-content/uploads/2019/05/D%C3%B6ner-Kebab-Pita-mit-Krautsalat-678x470.jpg","6.99"),
+  new Unit("kebab","Delicious Kebab","https://www.foodtempel.de/wp-content/uploads/2019/05/D%C3%B6ner-Kebab-Pita-mit-Krautsalat-678x470.jpg","32"),
+                  new Unit("kebab","Delicious Kebab","https://www.foodtempel.de/wp-content/uploads/2019/05/D%C3%B6ner-Kebab-Pita-mit-Krautsalat-678x470.jpg","12")];
  //allItems:Unit[]=[new Unit("kebab","beste kebab im welt",".../images/Doener.jpg")];
- isButtonClicked:boolean; 
- constructor() { }
+
+ constructor(private shopService:ShopService) { }
 
   ngOnInit() {
-    this.isButtonClicked=false;
   }
 
-  processClickOperation(){
-    this.isButtonClicked=true;
-  }
 
-  resetButtonClicked(){
-    this.isButtonClicked=false;
-  }
+
+
 
 }
  

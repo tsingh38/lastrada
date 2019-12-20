@@ -14,38 +14,7 @@
 <div class="container">
     <div class="row">
         <a href="#" class="list-group-item clearfix" *ngFor="let unit of allItems">
-            <div class="col-sm-3 col-md-4">
-                <div class="row">
-                    <div style="text-align: center;font: 400 2em/2 'Josefin Slab', serif;">{{unit.name}}
-                        <hr class="between" />
-                    </div>
-                    <div>
-                        <span>
-                            <img src="{{unit.imagePath}}" class="img-responsive"
-                                style="height:150px;width:50%;float:left">
-                        </span>
-                    </div>
-                </div>
-            </div>
-            <div class="panel-body">
-                <div class="row">
-                    <div class="col-sm-3 col-md-8" style="margin-top:25px;text-align:center;">
-                        <app-quantitydropdown></app-quantitydropdown>
-                        <app-sizedropdown appDropdown></app-sizedropdown>
-                        
-                        <hr class="between" />
-                    </div>
-
-                   
-                    <button style="background-color: grey;width:20%" type="button" (click)="processClickOperation()" [disabled]="isButtonClicked" class="btn btn-default btn-sm">
-                        <span class="glyphicon glyphicon-shopping-cart"
-                            style="width: 25%;max-height:250px;float:left;"></span>
-                        Add to Cart
-                    </button>
-
-                </div>
-            </div>
-
+        <app-catalog-unit [Unit]="unit"></app-catalog-unit>
         </a>
     </div>
 </div>

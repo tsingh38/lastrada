@@ -8,10 +8,10 @@ import { FooterComponent } from './shop/footer/footer.component';
 import { CatalogComponent } from './shop/catalog/catalog.component';
 import { CatalogUnitComponent } from './shop/catalog/catalog-unit/catalog-unit.component';
 import { DropdownDirective } from './directives/dropdown.directive';
-import { QuantitydropdownComponent } from './utilComponents/quantitydropdown/quantitydropdown.component';
-import { SizedropdownComponent } from './utilComponents/sizedropdown/sizedropdown.component';
 import { CartComponent } from './shop/cart/cart.component';
 import { RouterModule, Routes } from '@angular/router';
+import { ShopService } from './shop/shopservices/shopService';
+import { FormsModule } from '@angular/forms';
 
 const appRoutes:Routes=[
   {path:'',component:AppComponent},
@@ -26,14 +26,12 @@ const appRoutes:Routes=[
     CatalogComponent,
     CatalogUnitComponent,
     DropdownDirective,
-    QuantitydropdownComponent,
-    SizedropdownComponent,
     CartComponent
   ],
   imports: [
-    BrowserModule,NgbModule, RouterModule.forRoot(appRoutes)
+    BrowserModule,NgbModule,FormsModule, RouterModule.forRoot(appRoutes)
   ],
-  providers: [],
+  providers: [ShopService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

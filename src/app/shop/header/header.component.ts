@@ -12,4 +12,8 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {
   }
 
+  checkIfClickIsWorking(){
+    console.log("button is getting clicked");
+  }
+
 }

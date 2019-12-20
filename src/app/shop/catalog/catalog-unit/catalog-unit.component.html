@@ -1,0 +1,41 @@
+<div class="col-sm-3 col-md-4">
+    <div class="row">
+        <div style="text-align: center;font: 400 2em/2 'Josefin Slab', serif;">{{unit.name}}
+            <hr class="between" />
+        </div>
+        <div>
+            <span>
+                <img src="{{unit.imagePath}}" class="img-responsive" style="height:150px;width:50%;float:left">
+            </span>
+        </div>
+    </div>
+</div>
+<div class="panel-body">
+    <div class="row">
+        <div #testRef class="col-sm-3 col-md-8" style="margin-top:25px;text-align:center;">
+            <div>
+                <span>Quantity </span> <input type="number" min="1" max="30" value="1" #refQuantity>
+            </div>
+            <div appDropdown>
+                Große <button type="button" class="btn btn-sm"> <span class="caret" #refsize></span>Wahlen</button>
+                <ul class="dropdown-menu" style="position: absolute;right:10;">
+                    <li><a href="#" *ngFor="let size of sizeList">
+                            <p>{{size}}</p>
+                        </a></li>
+                </ul>
+            </div>
+            <div class="product-price">Preis :{{unit.price}}
+            </div>
+            <hr class="between" />
+        </div>
+
+
+        <button style="background-color: grey;width:20%" type="button"
+            (click)="processClickOperation(refQuantity,refsize,unit)" class="btn btn-default btn-sm">
+            <span class="glyphicon glyphicon-shopping-cart"
+                style="width: 25%;max-height:250px;align-self:right;"></span>
+            Add to Cart
+        </button>
+
+    </div>
+</div>
