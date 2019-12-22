@@ -1,0 +1,26 @@
+<div class="container-fluid">
+    <div class="row">
+        <div>
+            <a href="#" (click)="activateSearchElement()">
+                <span style="float:left;position:absolute;margin-left: 4ex;margin-top: 2ex;"
+                    class="glyphicon glyphicon-search"></span>
+            </a>
+        </div>
+        <div *ngIf="!isSearchBarActive">
+            <ul class="nav nav-tabs active" style="margin-left: 50px;">
+                <a href="#" (click)="onLeftClick()" *ngIf="isLeftClickEnabled"><span
+                        class="glyphicon glyphicon-chevron-left"></span></a>
+                <li role="presentation" *ngFor="let item of menuBarItemsInitView"><a href="#"
+                        style="color:gray">{{item}}</a></li>
+                <a href="#" (click)="onRightClick()" style="margin-left: 3em;" *ngIf="ifRightClickEnabled"><span
+                        class="glyphicon glyphicon-chevron-right"></span></a>
+            </ul>
+        </div>
+        <div *ngIf="isSearchBarActive">
+            <input type="text" placeholder="Search.." name="search">
+            <a href="#" (click)="deactivateSearchBar()">
+                <span class="glyphicon glyphicon-remove"></span>
+              </a>
+        </div>
+    </div>
+</div>

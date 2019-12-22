@@ -5,13 +5,12 @@ import { AppComponent } from './app.component';
 import { ShopComponent } from './shop/shop.component';
 import { HeaderComponent } from './shop/header/header.component';
 import { FooterComponent } from './shop/footer/footer.component';
-import { CatalogComponent } from './shop/catalog/catalog.component';
-import { CatalogUnitComponent } from './shop/catalog/catalog-unit/catalog-unit.component';
 import { DropdownDirective } from './directives/dropdown.directive';
 import { CartComponent } from './shop/cart/cart.component';
 import { RouterModule, Routes } from '@angular/router';
-import { ShopService } from './shop/shopservices/shopService';
 import { FormsModule } from '@angular/forms';
+import { NavbarComponent } from './shop/catalog/navbar/navbar.component';
+import { DynamicWidthOfElementDirective } from './directives/dynamic-width-of-element.directive';
 
 const appRoutes:Routes=[
   {path:'home',component:ShopComponent},
@@ -26,15 +25,15 @@ const appRoutes:Routes=[
     ShopComponent,
     HeaderComponent,
     FooterComponent,
-    CatalogComponent,
-    CatalogUnitComponent,
     DropdownDirective,
-    CartComponent
+    CartComponent,
+    NavbarComponent,
+    DynamicWidthOfElementDirective
   ],
   imports: [
     BrowserModule,NgbModule,RouterModule,FormsModule, RouterModule.forRoot(appRoutes)
   ],
-  providers: [ShopService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
