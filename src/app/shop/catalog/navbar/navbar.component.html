@@ -7,12 +7,17 @@
             </a>
         </div>
         <div *ngIf="!isSearchBarActive">
-            <ul class="nav nav-tabs active" style="margin-left: 50px;">
-                <a href="#" (click)="onLeftClick()" *ngIf="isLeftClickEnabled"><span
+            <ul class="nav nav-tabs"   style="margin-left: 50px;">
+                <a  [routerLink]="[menuBarItemsInitView[0]]" (click)="onLeftClick()" *ngIf="isLeftClickEnabled"><span
                         class="glyphicon glyphicon-chevron-left"></span></a>
-                <li role="presentation" *ngFor="let item of menuBarItemsInitView"><a href="#"
+                <li role="presentation" *ngFor="let item of menuBarItemsInitView let i=index"><a  
+                   
+                     [routerLink]="[item]"
+                     routerLinkActive="active" 
+                     [routerLinkActiveOptions]="{exact:
+                        true}"
                         style="color:gray">{{item}}</a></li>
-                <a href="#" (click)="onRightClick()" style="margin-left: 3em;" *ngIf="ifRightClickEnabled"><span
+                <a [routerLink]="[menuBarItemsInitView[1]]" (click)="onRightClick()"   style="margin-left: 3em;" *ngIf="ifRightClickEnabled"><span
                         class="glyphicon glyphicon-chevron-right"></span></a>
             </ul>
         </div>

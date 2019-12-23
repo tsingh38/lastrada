@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ShopService } from '../../shopservice';
 
 @Component({
   selector: 'app-navbar',
@@ -6,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
-menuBarItemsAll:String[]=['Pizza','Indisch','Salat','Italinisch','Getränke','AlkohalfreiGetäanke','Pide','Donör','Something1','Someething2','AlkohalfreiGetäanke','Something3','Someething21','Someething25']
+menuBarItemsAll:String[]=['Pizza','Indisch','Salat','Italinisch','Drink','AlkohalfreiGetäanke','Pide','Donör','Something1','Someething2','AlkohalfreiGetäanke','Something3','Someething21','Someething25']
 menuBarItemsInitView:String[];  
 initStartIndex=0;
 initNumberOfItemsToShow=5;
@@ -14,8 +15,8 @@ isLeftClickEnabled=false;
 ifRightClickEnabled=!this.isLeftClickEnabled;
 isSearchBarActive=false;
 
-constructor() {
-  this.menuBarItemsInitView=this.updateItemsInView(this.initStartIndex);
+constructor(private shopService : ShopService) {
+  this.menuBarItemsInitView=this.updateItemsInView(Number(this.initStartIndex));
  }
 
   ngOnInit() {
@@ -26,24 +27,23 @@ constructor() {
     if(  this.initStartIndex > 0){
     this.initStartIndex--;
     }
+  
     this.menuBarItemsInitView= this.updateItemsInView(this.initStartIndex);
   }
 
   onRightClick(){
-
-    console.log("initStartIndex"+this.initStartIndex+" this.initNumberOfItemsToShow "+this.initNumberOfItemsToShow+" "+this.menuBarItemsAll.length);
-    if((Number(this.initStartIndex)+Number(this.initNumberOfItemsToShow)) < this.menuBarItemsAll.length){
+     if((Number(this.initStartIndex)+Number(this.initNumberOfItemsToShow)) < this.menuBarItemsAll.length){
       this.isLeftClickEnabled=true;
       this.initStartIndex++;
     }
-
+  
     this.menuBarItemsInitView= this.updateItemsInView(this.initStartIndex);
 
  
   }
 
+
   activateSearchElement(){
-    console.log("click is called on Search");
 this.isSearchBarActive=true;
   }
 
@@ -53,6 +53,8 @@ this.isSearchBarActive=true;
   }
 
   updateItemsInView(indexStart:number):String[]{
+  
+
     if((Number(this.menuBarItemsAll.length) - Number(this.initStartIndex))<=this.initNumberOfItemsToShow ){
       this.ifRightClickEnabled=false;
       return this.menuBarItemsInitView;

@@ -1,24 +1,25 @@
-import { Directive, ElementRef, OnInit } from '@angular/core';
+import { Directive, ElementRef, OnInit, ViewChild } from '@angular/core';
 
 @Directive({
   selector: '[appDynamicWidthOfElement]'
 })
 export class DynamicWidthOfElementDirective implements OnInit  {
-
-  constructor(private eleRef: ElementRef) { }
+  constructor(private eleref : ElementRef) { }
 
   ngOnInit(){
-    console.log(this.eleRef.nativeElement.offsetWidth);
-    console.log(this.eleRef.nativeElement.clientWidth);
-    console.log(this.eleRef.nativeElement.scrollWidth);
+    var localElementRef=this.eleref.nativeElement.parentElement.parentElement;
+    console.log(localElementRef);
+    var child_node=localElementRef.querySelector('li:nth-child(2)');
+    console.log(child_node);
+  
+    //console.log(localElementRef.get(''));
+  }
+
 
  //   var input = document.querySelector('input'); // get the input element
    // input.addEventListener('input', resizeInput); // bind the "resizeInput" callback on "input" event
   //  resizeInput.call(input); // immediately call the function
-    
-    function resizeInput() {
-      this.style.width = this.value.length + "ch";
-    }
-  }
+  //this.pizzaInput.toArray()[i].nativeElement.disabled = false;
+  
 
 }
