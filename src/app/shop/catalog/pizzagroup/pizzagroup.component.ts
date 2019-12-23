@@ -15,6 +15,8 @@ export class PizzagroupComponent implements OnInit {
   allPizzaSizes: String[] = [];
   allPizzaItems: PizzaUnit[] = [];
   allPizzaAdditions: PizzaAdditions[] = [];
+  show = 3;
+
   @ViewChild('f', { static: true }) formReference: NgForm;
   constructor(private pizzaService: PizzaService) { }
 
@@ -23,12 +25,6 @@ export class PizzagroupComponent implements OnInit {
     this.allPizzaAdditions = this.pizzaService.fetchAllPizzaAdditions();
     this.allPizzaSizes = this.pizzaService.fetchAllPizzaSizes();
   }
-
-  compareFn(c1: String, c2: String): boolean {
-    console.log("c1" +c1+" c2"+c2);
-    console.log("c1 === c2 "+c1 === c2);
-    return  c1 === c2;
-}
 
 
   openCollapsedDetailWindow(index: number) {
