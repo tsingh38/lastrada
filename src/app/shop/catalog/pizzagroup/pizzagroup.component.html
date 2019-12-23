@@ -4,12 +4,13 @@
             <div class="col-sm-6">
                 <p style="font-weight: bold;font-size: 20px;">{{item.pizzaName}}</p> <br>
                 <p>{{item.pizzaDescription}}</p><br>
-                <p style="font-style: italic;">Wahl aus: Small, Ø 28cm, Normal, Ø 32cm oder Family, 46cm x 33cm,Party.</p>
-            <p style="font-weight: bold;">{{item.pizzaPriceSmall}}€</p>
+                <p style="font-style: italic;">Wahl aus: Small, Ø 28cm, Normal, Ø 32cm oder Family, 46cm x 33cm,Party.
+                </p>
+                <p style="font-weight: bold;">{{item.pizzaPriceSmall}}€</p>
             </div>
             <div class="col-sm-6">
-                <a (click)="openCollapsedDetailWindow(i)" >
-                <span class="glyphicon glyphicon-plus pull-right"></span>
+                <a (click)="openCollapsedDetailWindow(i)">
+                    <span class="glyphicon glyphicon-plus pull-right"></span>
                 </a>
 
             </div>
@@ -17,14 +18,26 @@
         </div>
         <div *ngIf="openDetailedWindow(i)" class="row">
 
-            <div class="col-sm-11">
-                this is the duplicate text which will be displayed multiple times.
-                this is the duplicate text which will be displayed multiple times
-                this is the duplicate text which will be displayed multiple times
-                this is the duplicate text which will be displayed multiple times
-                this is the duplicate text which will be displayed multiple times
-                this is the duplicate text which will be displayed multiple times
-                this is the duplicate text which will be displayed multiple times
+            <div style="background-color: lightgray;" class="col-sm-11">
+                                   
+<form (ngSubmit)="onSubmit()" #f='ngForm'>
+    <div class="form-group">
+        <span class="pull-left">{{item.pizzaName}}</span> 
+        <select id="size" class="form-control center-block"  [ngModel]="defaultSize"  name="size">
+            <option  *ngFor="let pizzaSize of allPizzaSizes;" value=pizzaSize selected="selected" >{{pizzaSize}}</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <span class="pull-left"> Ihre Extras:</span><br>
+       <div *ngFor ="let pizzaAddition of allPizzaAdditions">
+        <input type="checkbox" value=pizzaAddition name="pizzaaddition" ngModel/>  
+        <span> mit {{pizzaAddition.nameOfAddition}}</span> <span>({{pizzaAddition.price}}€)</span>
+    </div>
+    </div>
+
+</form>
+               
+             
                 <button class="btn btn-primary " style="align-content: center;">Add to Cart</button>
             </div>
             <div class="col-sm-1">
@@ -36,6 +49,6 @@
 
             </div>
         </div>
-        
+
     </div>
 </div>
