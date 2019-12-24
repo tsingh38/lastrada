@@ -1,8 +1,9 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import { PizzaUnit } from '../../pizzaunit.model';
 import { PizzaAdditions } from '../../pizzaAdditions.model';
 import { PizzaSizes } from '../../Pizzasizes.model';
 import { PizzaUnitService } from '../../pizzaunitservice';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-pizzaunit',
@@ -14,13 +15,24 @@ export class PizzaunitComponent implements OnInit {
   selectedQuantity: Number = 1;
   priceOnButton: Number = 0;
   defaultSize = 'Normal 28';
-  selectedSize: String=this.defaultSize;
+  selectedSize: String = this.defaultSize;
   allPizzaSizes: PizzaSizes[] = [];
   allPizzaItems: PizzaUnit[] = [];
   allPizzaAdditions: PizzaAdditions[] = [];
   listOfCheckedPizzaAdditions: PizzaAdditions[] = [];
   openMealsByIndex: Boolean[] = [];
   show = 3;
+
+  orderedPizza: { id: String, name: String, size: String, listOfAdditions: PizzaAdditions[], quantity: Number, totalPrice: Number } = {
+    id: '',
+    name: '',
+    size: '',
+    listOfAdditions: null,
+    quantity: 0,
+    totalPrice: 0
+  }
+
+  @ViewChild('f', { static: false }) formReference: NgForm;
   constructor(private pizzaService: PizzaUnitService) { }
 
   ngOnInit() {
@@ -30,7 +42,7 @@ export class PizzaunitComponent implements OnInit {
   }
 
   ngDoCheck() {
-    this.priceOnButton=this.pizzaService.calculateTotalPriceForAUnit(this.pizza,this.selectedSize,this.listOfCheckedPizzaAdditions,this.selectedQuantity);
+    this.priceOnButton = this.pizzaService.calculateTotalPriceForAUnit(this.pizza, this.selectedSize, this.listOfCheckedPizzaAdditions, this.selectedQuantity);
   }
 
   increaseTheNumber(selectedPizza: any): Number {
@@ -44,9 +56,7 @@ export class PizzaunitComponent implements OnInit {
     return this.selectedQuantity;
   }
 
-  fetchPizzaPriceForASize() {
 
-  }
 
   openCollapsedDetailWindow(index: number) {
     this.openMealsByIndex[index] = true;
@@ -74,14 +84,24 @@ export class PizzaunitComponent implements OnInit {
     this.selectedSize = (<HTMLTextAreaElement>event.target).value;
   }
 
+  onSubmit() {
+    this.orderedPizza.id = this.pizza.pizzaId;
+    this.orderedPizza.name = this.pizza.pizzaName;
+    this.orderedPizza.quantity = this.selectedQuantity;
+    this.orderedPizza.size = this.selectedSize;
+    this.orderedPizza.listOfAdditions = this.listOfCheckedPizzaAdditions;
+    this.orderedPizza.totalPrice = this.priceOnButton;
+
+  }
+
   fetchPriceForSelectedAddition(pizzaAddition: PizzaAdditions, selectedPizza: any, selectedPizzaSize: HTMLSelectElement, event: Event) {
     if ((<HTMLInputElement>event.target).checked) {
       this.listOfCheckedPizzaAdditions.push(pizzaAddition);
     }
     else if (!(<HTMLInputElement>event.target).checked) {
-      if (this.listOfCheckedPizzaAdditions.length > 0 ) {
-        for(let pizzaAdditions of this.listOfCheckedPizzaAdditions){
-          if(pizzaAdditions.id===pizzaAddition.id){
+      if (this.listOfCheckedPizzaAdditions.length > 0) {
+        for (let pizzaAdditions of this.listOfCheckedPizzaAdditions) {
+          if (pizzaAdditions.id === pizzaAddition.id) {
             this.listOfCheckedPizzaAdditions.splice(this.listOfCheckedPizzaAdditions.indexOf(pizzaAddition), 1);
           }
         }
