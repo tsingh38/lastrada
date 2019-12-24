@@ -91,6 +91,7 @@ export class PizzaunitComponent implements OnInit {
     this.orderedPizza.size = this.selectedSize;
     this.orderedPizza.listOfAdditions = this.listOfCheckedPizzaAdditions;
     this.orderedPizza.totalPrice = this.priceOnButton;
+    this.pizzaService.emitOrder( this.orderedPizza);
 
   }
 

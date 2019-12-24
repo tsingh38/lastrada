@@ -6,7 +6,6 @@ import { ShopComponent } from './shop/shop.component';
 import { HeaderComponent } from './shop/header/header.component';
 import { FooterComponent } from './shop/footer/footer.component';
 import { DropdownDirective } from './directives/dropdown.directive';
-import { CartComponent } from './shop/cart/cart.component';
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { NavbarComponent } from './shop/catalog/navbar/navbar.component';
@@ -20,6 +19,7 @@ import { AllmealsgroupComponent } from './shop/catalog/allmealsgroup/allmealsgro
 import { NotFoundComponent } from './shop/catalog/not-found/not-found.component';
 import { CatalogComponent } from './shop/catalog/catalog/catalog.component';
 import { PizzaunitComponent } from './shop/catalog/pizzagroup/pizzaunit/pizzaunit.component';
+import { CartComponent } from './shop/catalog/cart/cart.component';
 
 const appRoutes: Routes = [
   {
@@ -41,7 +41,6 @@ const appRoutes: Routes = [
     HeaderComponent,
     FooterComponent,
     DropdownDirective,
-    CartComponent,
     NavbarComponent,
     DynamicWidthOfElementDirective,
     IndischgroupComponent,
@@ -51,6 +50,7 @@ const appRoutes: Routes = [
     AllmealsgroupComponent,
     NotFoundComponent,
     CatalogComponent,
+    CartComponent,
     PizzaunitComponent
   ],
   imports: [

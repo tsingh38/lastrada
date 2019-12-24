@@ -1,0 +1,40 @@
+<div class="row">
+    <div class="text-center">
+        <span>WarenKorb</span>
+    </div>
+    <hr>
+    <div *ngIf="this.orderedItems.length < 1">
+        <p style="text-align: center;"><span class="glyphicon glyphicon-shopping-cart"></span></p> <br>
+        <span class="emptybucket">Wähle leckere Gerichte aus der Karte und bestelle Dein Menü.</span>
+    </div>
+    <div class="row" style="margin-left: 3rem;" *ngFor="let item of orderedItems">
+        <span>{{item.quantity}}</span>
+
+        <span>{{item.name}}</span>
+
+        <span>{{item.quantity}}</span>
+
+        <span>{{item.totalPrice}}</span>
+    </div>
+    <hr>
+    <div class="row">
+        <span class="pull-left" style="margin-left: 3rem; color:#7d7d7d; font-size: 12px;">Zwischen Summe </span>
+        <span   style="color:#7d7d7d;"class="pull-right">{{totalSum}} €</span>
+    </div>
+    <div class="row">
+        <span class="pull-left" style="margin-left: 3rem;color:#7d7d7d;font-size: 12px;">Liferung Kosten </span>
+        <span class="pull-right" style="color:#7d7d7d;">2 €</span>
+    </div>
+
+    <div class="row">
+        <span class="pull-left" style="margin-left: 3rem;font-size: 15px;"><b>Gesamt </b></span>
+        <span class="pull-right">2 €</span>
+    </div>
+    <hr>
+    <div class="row" style="margin-left: 3rem;color:#7d7d7d;">
+    <span *ngIf= "orderCannotBeDelivered"> Leider kannst Du noch nicht bestellen. wir liefern erst ab einem Mindestbestellwert von 15,00 € (exkl. Lieferkosten)</span>
+    </div>
+    <div class="row">
+    <button  style="margin-left:3rem;"  [disabled]="this.orderedItems.length < 1" class="btn btn-primary btn-lg btn-block">Bestellen</button>
+    </div>
+</div>

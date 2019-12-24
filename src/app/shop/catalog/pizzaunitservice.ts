@@ -1,8 +1,15 @@
 import { PizzaSizes } from './Pizzasizes.model';
 import { PizzaAdditions } from './pizzaAdditions.model';
 import { PizzaUnit } from './pizzaunit.model';
-
+import { CartService } from './cart/cart.service';
+import { Injectable } from '@angular/core';
+@Injectable()
 export class PizzaUnitService{
+
+
+    constructor(private cartService: CartService){
+
+    }
     fetchAllPizzaAdditions(): PizzaAdditions[] {
         //TODO use REST to fetchPizza data from Server
         //Mock up
@@ -55,6 +62,9 @@ export class PizzaUnitService{
     }
 
 
+    emitOrder(order:any){
+        this.cartService.pizzaOrderEmitter.next(order);
+    }
 
 
 
