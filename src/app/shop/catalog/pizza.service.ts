@@ -1,9 +1,12 @@
 import { PizzaUnit } from './pizzaunit.model'
 import { PizzaAdditions } from './pizzaAdditions.model';
+import { Subject } from 'rxjs';
+import { PizzaSizes } from './Pizzasizes.model';
 
 export class PizzaService {
 
-
+    priceEmitter=new Subject<Number>();
+   
     fetchAllPizzas(): PizzaUnit[] {
         //TODO use REST to fetchPizza data from Server
         //Mock up
@@ -88,12 +91,23 @@ console.log(allPizzasList);
    }
 
 
-   fetchAllPizzaSizes():String[]{
-       return['Small 26','Normal 28','Family 30','Party 32'];
+   fetchAllPizzaSizes():PizzaSizes[]{
+      var allPizzaSizes:PizzaSizes[]=[];
+      allPizzaSizes.push(new PizzaSizes('S','Small 26'));
+      allPizzaSizes.push(new PizzaSizes('N','Normal 28'));
+      allPizzaSizes.push(new PizzaSizes('F','Small 32'));
+      allPizzaSizes.push(new PizzaSizes('P','Small 38'));
+       return allPizzaSizes;
    }
 
+ 
+fetchPriceOfAPizzaForASelectedSize(selectedPizza:PizzaUnit,selectedSize:String):Number{
+    //TODO
+    return 10.99;
+}
 
    
   
 
 }
+

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PizzaUnit } from '../pizzaunit.model';
 import { Router, ActivatedRoute } from '@angular/router';
-import { CatalogService } from './catalogservice';
+
 
 @Component({
   selector: 'app-catalog',

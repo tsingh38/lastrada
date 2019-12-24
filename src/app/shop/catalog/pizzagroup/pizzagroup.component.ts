@@ -3,6 +3,7 @@ import { PizzaUnit } from '../pizzaunit.model';
 import { PizzaService } from '../pizza.service';
 import { PizzaAdditions } from '../pizzaAdditions.model';
 import { NgForm } from '@angular/forms';
+import { PizzaSizes } from '../Pizzasizes.model';
 
 @Component({
   selector: 'app-pizzagroup',
@@ -12,8 +13,9 @@ import { NgForm } from '@angular/forms';
 export class PizzagroupComponent implements OnInit {
   openMealsByIndex: Boolean[] = [];
   selectedQuantity:Number=1;
+  priceOnButton:Number;
   defaultSize='Normal 28';
-  allPizzaSizes: String[] = [];
+  allPizzaSizes:  PizzaSizes [] = [];
   allPizzaItems: PizzaUnit[] = [];
   allPizzaAdditions: PizzaAdditions[] = [];
   show = 3;
@@ -25,6 +27,9 @@ export class PizzagroupComponent implements OnInit {
     this.allPizzaItems = this.pizzaService.fetchAllPizzas();
     this.allPizzaAdditions = this.pizzaService.fetchAllPizzaAdditions();
     this.allPizzaSizes = this.pizzaService.fetchAllPizzaSizes();
+   this.pizzaService.priceEmitter.subscribe(param=>{
+this.priceOnButton=param;
+    })
   }
 
   increaseTheNumber():Number{
@@ -36,6 +41,10 @@ export class PizzagroupComponent implements OnInit {
     this.selectedQuantity = Number(this.selectedQuantity)-1;
     }
     return this.selectedQuantity;
+  }
+
+  fetchPizzaPriceForASize(){
+
   }
 
   openCollapsedDetailWindow(index: number) {
@@ -53,4 +62,14 @@ export class PizzagroupComponent implements OnInit {
     this.openMealsByIndex[index] = false;
   }
 
+  pizzaSizeSelected(selectedPizza: PizzaUnit, event:Event){
+    var selectedSize:String;
+    console.log(selectedPizza +" "+ event.target.value);
+    selectedSize= event.target.value;
+    var PriceForASelectedSize=this.pizzaService.fetchPriceOfAPizzaForASelectedSize(selectedPizza,event);
+    this.pizzaService.priceEmitter.next(PriceForASelectedSize);
+    //this.pizzaService.priceEmitter.next(selectedSize);
+   
+    
+  }
 }
