@@ -1,0 +1,68 @@
+<div class="row">
+    <div class="col-sm-6">
+        <p style="font-weight: bold;font-size: 20px;">{{pizza.pizzaName}}</p> <br>
+        <p>{{pizza.pizzaDescription}}</p><br>
+        <p style="font-style: italic;">Wahl aus: Small, Ø 28cm, Normal, Ø 32cm oder Family, 46cm x 33cm,Party.
+        </p>
+        <p style="font-weight: bold;">{{pizza.pizzaPriceN}}€</p>
+    </div>
+    <div class="col-sm-6">
+        <a *ngIf="!openDetailedWindow(i)" (click)="openCollapsedDetailWindow(i)">
+            <span class="glyphicon glyphicon-plus pull-right"></span>
+        </a>
+        <a *ngIf="openDetailedWindow(i)" (click)="closeDetailWindow(i)">
+            <span class="glyphicon glyphicon-remove pull-right"></span>
+        </a>
+
+
+    </div>
+
+</div>
+<div *ngIf="openDetailedWindow(i)" class="row">
+
+    <div style="background-color: lightgray;" class="col-sm-11">
+
+        <form (ngSubmit)="onSubmit()" #f='ngForm'>
+            <div class="form-group">
+                <span class="pull-left">{{pizza.pizzaName}}</span>
+                <select id="size" class="form-control center-block" #selectedPizzaSize (change)='pizzaSizeSelected(pizza,$event)'  [(ngModel)]="defaultSize"  name="pizzaSize">
+                    <option *ngFor="let pizzaSize of allPizzaSizes;" [value]="pizzaSize.name">
+                        {{pizzaSize.name}}</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <span class="pull-left"> Ihre Extras:</span><br>
+                <div *ngFor="let pizzaAddition of allPizzaAdditions | slice:0:show;let i = index">
+                    <input type="checkbox" value=pizzaAddition name="pizzaaddition" ngModel (change)="fetchPriceForSelectedAddition(allPizzaAdditions[i],pizza, selectedPizzaSize,$event)" />
+                    <span> mit {{pizzaAddition.nameOfAddition}}</span>
+                    <span>({{displayPizzaAdditionPriceForSelectedPizzaSize(selectedPizzaSize,pizzaAddition.nameOfAddition)==0?pizzaAddition.price:displayPizzaAdditionPriceForSelectedPizzaSize(selectedPizzaSize,pizzaAddition.nameOfAddition)}}€)</span><br>
+                    <a *ngIf="i==2 && show == 3" (click)="show = allPizzaAdditions.length">
+                        <span class="glyphicon glyphicon-chevron-down"></span>
+                    </a>
+                </div>
+            </div>
+
+        <div class="pull-left" >                  
+<button type="button" (click)="decreaseTheNumber(item)" style="background-color: white;" class="btn btn-default btn-sm">
+<span class=" glyphicon glyphicon-minus"></span> 
+</button>
+<button type="button"  style="background-color: white;" class="btn btn-default btn-sm">
+<label>{{selectedQuantity}}</label>
+</button>
+<button type="button"  (click)="increaseTheNumber(item)" style="background-color: white;" class="btn btn-default btn-sm">
+<span class="  glyphicon glyphicon-plus"></span>
+</button>
+        </div>
+            <div class="form-group">
+            <button class="btn btn-primary " style="align-content: center;width: 25ex;position:absolute;
+            bottom: 10px;
+            left: 50%;
+margin-left: -104.5px;">{{priceOnButton==0?pizza.pizzaPriceN :priceOnButton}}€</button>
+          </div>
+        </form>
+
+      
+    </div>
+
+</div>
+

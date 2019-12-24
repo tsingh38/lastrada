@@ -19,6 +19,7 @@ import { DrinkgroupComponent } from './shop/catalog/drinkgroup/drinkgroup.compon
 import { AllmealsgroupComponent } from './shop/catalog/allmealsgroup/allmealsgroup.component';
 import { NotFoundComponent } from './shop/catalog/not-found/not-found.component';
 import { CatalogComponent } from './shop/catalog/catalog/catalog.component';
+import { PizzaunitComponent } from './shop/catalog/pizzagroup/pizzaunit/pizzaunit.component';
 
 const appRoutes: Routes = [
   {
@@ -49,7 +50,8 @@ const appRoutes: Routes = [
     DrinkgroupComponent,
     AllmealsgroupComponent,
     NotFoundComponent,
-    CatalogComponent
+    CatalogComponent,
+    PizzaunitComponent
   ],
   imports: [
     BrowserModule, NgbModule, RouterModule, FormsModule, RouterModule.forRoot(appRoutes)
