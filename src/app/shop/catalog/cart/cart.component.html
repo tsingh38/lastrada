@@ -1,4 +1,5 @@
-<div class="row">
+<div class="container-fluid" style="position:fixed;margin-right: 6ex;">
+<div class="row" >
     <div class="text-center">
         <span>WarenKorb</span>
     </div>
@@ -34,7 +35,8 @@
     <div class="row" style="margin-left: 3rem;color:#7d7d7d;">
     <span *ngIf= "orderCannotBeDelivered"> Leider kannst Du noch nicht bestellen. wir liefern erst ab einem Mindestbestellwert von 15,00 € (exkl. Lieferkosten)</span>
     </div>
-    <div class="row">
-    <button  style="margin-left:3rem;"  [disabled]="this.orderedItems.length < 1" class="btn btn-primary btn-lg btn-block">Bestellen</button>
+    <div>
+    <button  style="margin-left:3rem;margin-right: -2px;"  [disabled]="this.orderedItems.length < 1" class="btn btn-primary btn-lg btn-block">Bestellen</button>
     </div>
+</div>
 </div>
