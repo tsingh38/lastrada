@@ -8,14 +8,28 @@
         <p style="text-align: center;"><span class="glyphicon glyphicon-shopping-cart"></span></p> <br>
         <span class="emptybucket">Wähle leckere Gerichte aus der Karte und bestelle Dein Menü.</span>
     </div>
-    <div class="row" style="margin-left: 3rem;" *ngFor="let item of orderedItems">
-        <span>{{item.quantity}}</span>
+    <div class="row cart-row" style="margin-left: 3rem;" *ngFor="let item of orderedItems">
+        <span>{{item.quantity}}x</span>
 
-        <span>{{item.name}}</span>
+        <span style="padding-left: 5ex;">{{item.name}}</span>
+        <div style="padding-left: 5ex;">
+            <button type="button"  style="background-color: white;"
+                class="btn btn-default btn-sm">
+                <span class=" glyphicon glyphicon-minus"></span>
+            </button>
+            <button type="button"  style="background-color: white;"
+                class="btn btn-default btn-sm">
+                <span class="  glyphicon glyphicon-plus"></span>
+            </button>
+        </div>
+    
+      <span style="padding-left: 5ex;"> 
+        <a>
+          <span style="padding-left: 5ex;" class="glyphicon glyphicon-trash"></span>
+        </a>
+      </span>
 
-        <span>{{item.quantity}}</span>
-
-        <span>{{item.totalPrice}}</span>
+      <span style="padding-left: 2ex;margin-left: 2ex;">{{item.totalPrice}}€</span>
     </div>
     <hr>
     <div class="row">
