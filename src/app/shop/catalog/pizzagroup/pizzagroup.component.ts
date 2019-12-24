@@ -77,7 +77,19 @@ return 0;
 
   }
 
-  fetchPriceForSelectedAddition(){
-
+  fetchPriceForSelectedAddition(pizzaAddition:PizzaAdditions, selectedPizza:any, selectedPizzaSize:HTMLSelectElement,event:Event){
+   var defaultPriceOnButton=selectedPizza.pizzaPriceN;
+   if(this.priceOnButton===0){
+    this.priceOnButton=defaultPriceOnButton;
+   }
+   console.log("selectedPizza "+selectedPizza.pizzaPriceN);
+    if((<HTMLInputElement>event.target).checked){
+    var fetchedPrice=this.pizzaService.calculatePriceOfAPizzaAddition(selectedPizzaSize.value,pizzaAddition.id);
+  this.priceOnButton=Number((Number(this.priceOnButton)+Number(fetchedPrice)).toFixed(2));
+        } 
+        else if(!(<HTMLInputElement>event.target).checked){
+    var fetchedPrice=this.pizzaService.calculatePriceOfAPizzaAddition(selectedPizzaSize.value,pizzaAddition.id);
+  this.priceOnButton=Number((Number(this.priceOnButton)-Number(fetchedPrice)).toFixed(2));
+        } 
   }
 }
