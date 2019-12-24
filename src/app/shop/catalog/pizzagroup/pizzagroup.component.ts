@@ -11,6 +11,7 @@ import { NgForm } from '@angular/forms';
 })
 export class PizzagroupComponent implements OnInit {
   openMealsByIndex: Boolean[] = [];
+  selectedQuantity:Number=1;
   defaultSize='Normal 28';
   allPizzaSizes: String[] = [];
   allPizzaItems: PizzaUnit[] = [];
@@ -26,6 +27,16 @@ export class PizzagroupComponent implements OnInit {
     this.allPizzaSizes = this.pizzaService.fetchAllPizzaSizes();
   }
 
+  increaseTheNumber():Number{
+    this.selectedQuantity = Number(this.selectedQuantity)+1;
+    return this.selectedQuantity;
+  }
+  decreaseTheNumber():Number{
+    if(this.selectedQuantity > 1){
+    this.selectedQuantity = Number(this.selectedQuantity)-1;
+    }
+    return this.selectedQuantity;
+  }
 
   openCollapsedDetailWindow(index: number) {
     this.openMealsByIndex[index] = true;

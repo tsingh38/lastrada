@@ -9,13 +9,13 @@
                 <p style="font-weight: bold;">{{item.pizzaPriceSmall}}€</p>
             </div>
             <div class="col-sm-6">
-                <a  *ngIf="!openDetailedWindow(i)" (click)="openCollapsedDetailWindow(i)">
+                <a *ngIf="!openDetailedWindow(i)" (click)="openCollapsedDetailWindow(i)">
                     <span class="glyphicon glyphicon-plus pull-right"></span>
                 </a>
                 <a *ngIf="openDetailedWindow(i)" (click)="closeDetailWindow(i)">
                     <span class="glyphicon glyphicon-remove pull-right"></span>
                 </a>
-            
+
 
             </div>
 
@@ -36,22 +36,36 @@
                         <span class="pull-left"> Ihre Extras:</span><br>
                         <div *ngFor="let pizzaAddition of allPizzaAdditions | slice:0:show;let i = index">
                             <input type="checkbox" value=pizzaAddition name="pizzaaddition" ngModel />
-                            <span> mit {{pizzaAddition.nameOfAddition}}</span> <span>({{pizzaAddition.price}}€)</span><br>
+                            <span> mit {{pizzaAddition.nameOfAddition}}</span>
+                            <span>({{pizzaAddition.price}}€)</span><br>
                             <a *ngIf="i==2 && show == 3" (click)="show = allPizzaAdditions.length">
                                 <span class="glyphicon glyphicon-chevron-down"></span>
-                              </a>
+                            </a>
                         </div>
                     </div>
 
+                <div  >                  
+  <button type="button" (click)="decreaseTheNumber()" style="background-color: white;" class="btn btn-default btn-sm">
+    <span class=" glyphicon glyphicon-minus"></span> 
+  </button>
+  <button type="button"  style="background-color: white;" class="btn btn-default btn-sm">
+   <label>{{selectedQuantity}}</label>
+  </button>
+<button type="button"  (click)="increaseTheNumber()" style="background-color: white;" class="btn btn-default btn-sm">
+    <span class="  glyphicon glyphicon-plus"></span>
+  </button>
+                </div>
+                    <div class="form-group">
+                    <button class="btn btn-primary " style="align-content: center;position:absolute;
+                    bottom: 10px;
+                    left: 50%;
+        margin-left: -104.5px;">{{item.pizzaPriceSmall}}€</button>
+                  </div>
                 </form>
 
-
-                <button class="btn btn-primary " style="align-content: center;position:absolute;
-                bottom: 10px;
-                left: 50%;
-    margin-left: -104.5px;">Total</button>
+              
             </div>
-          
+
         </div>
 
     </div>
