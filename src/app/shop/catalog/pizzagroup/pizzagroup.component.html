@@ -27,7 +27,7 @@
                 <form (ngSubmit)="onSubmit()" #f='ngForm'>
                     <div class="form-group">
                         <span class="pull-left">{{item.pizzaName}}</span>
-                        <select id="size" class="form-control center-block"  (change)='pizzaSizeSelected(allPizzaItems[i],$event)' ngModel name="pizzaSize">
+                        <select id="size" class="form-control center-block" #selectedPizzaSize (change)='pizzaSizeSelected(allPizzaItems[i],$event)'  [ngModel]="defaultSize"  name="pizzaSize">
                             <option *ngFor="let pizzaSize of allPizzaSizes;" [value]="pizzaSize.name">
                                 {{pizzaSize.name}}</option>
                         </select>
@@ -35,9 +35,9 @@
                     <div class="form-group">
                         <span class="pull-left"> Ihre Extras:</span><br>
                         <div *ngFor="let pizzaAddition of allPizzaAdditions | slice:0:show;let i = index">
-                            <input type="checkbox" value=pizzaAddition name="pizzaaddition" ngModel />
+                            <input type="checkbox" value=pizzaAddition name="pizzaaddition" [(ngModel)]="isChecked" (change)="fetchPriceForSelectedAddition($event)" />
                             <span> mit {{pizzaAddition.nameOfAddition}}</span>
-                            <span>({{pizzaAddition.price}}€)</span><br>
+                            <span>({{displayPizzaAdditionPriceForSelectedPizzaSize(selectedPizzaSize,pizzaAddition.nameOfAddition)==0?pizzaAddition.price:displayPizzaAdditionPriceForSelectedPizzaSize(selectedPizzaSize,pizzaAddition.nameOfAddition)}}€)</span><br>
                             <a *ngIf="i==2 && show == 3" (click)="show = allPizzaAdditions.length">
                                 <span class="glyphicon glyphicon-chevron-down"></span>
                             </a>
@@ -59,7 +59,7 @@
                     <button class="btn btn-primary " style="align-content: center;position:absolute;
                     bottom: 10px;
                     left: 50%;
-        margin-left: -104.5px;">{{priceOnButton}}€</button>
+        margin-left: -104.5px;">{{priceOnButton==0?item.pizzaPrice :priceOnButton}}€</button>
                   </div>
                 </form>
 

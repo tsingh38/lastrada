@@ -95,15 +95,32 @@ console.log(allPizzasList);
       var allPizzaSizes:PizzaSizes[]=[];
       allPizzaSizes.push(new PizzaSizes('S','Small 26'));
       allPizzaSizes.push(new PizzaSizes('N','Normal 28'));
-      allPizzaSizes.push(new PizzaSizes('F','Small 32'));
-      allPizzaSizes.push(new PizzaSizes('P','Small 38'));
+      allPizzaSizes.push(new PizzaSizes('F','Family 32'));
+      allPizzaSizes.push(new PizzaSizes('P','Party 38'));
        return allPizzaSizes;
    }
 
+
+   fetchPriceOfAPizzaAdditionsAccordingToSize(selectedSize:String,selectedAddition:String){
+    switch(selectedSize){
+        case 'Small 26': return 0.50;
+        case 'Normal 28': return 1;
+        case 'Family 32': return 1.50;
+        case 'Party 38': return 2;
+        default: return 0.50;
+    }
+
+   }
  
 fetchPriceOfAPizzaForASelectedSize(selectedPizza:PizzaUnit,selectedSize:String):Number{
-    //TODO
-    return 10.99;
+ switch(selectedSize){
+     case 'Small 26': return 8.99;
+     case 'Normal 28': return 11.99;
+     case 'Family 32': return 14.99;
+     case 'Party 38': return 21.99;
+     default: return 4.99;
+ }
+    
 }
 
    

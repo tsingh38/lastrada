@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { PizzaUnit } from '../pizzaunit.model';
 import { PizzaService } from '../pizza.service';
 import { PizzaAdditions } from '../pizzaAdditions.model';
@@ -13,7 +13,7 @@ import { PizzaSizes } from '../Pizzasizes.model';
 export class PizzagroupComponent implements OnInit {
   openMealsByIndex: Boolean[] = [];
   selectedQuantity:Number=1;
-  priceOnButton:Number;
+  priceOnButton:Number=0;
   defaultSize='Normal 28';
   allPizzaSizes:  PizzaSizes [] = [];
   allPizzaItems: PizzaUnit[] = [];
@@ -62,14 +62,22 @@ this.priceOnButton=param;
     this.openMealsByIndex[index] = false;
   }
 
+  displayPizzaAdditionPriceForSelectedPizzaSize(selectedPizzaSize:HTMLSelectElement,currentPizzaAddition:PizzaAdditions){
+if(selectedPizzaSize.value.length > 0){
+return this.pizzaService.fetchPriceOfAPizzaAdditionsAccordingToSize(selectedPizzaSize.value,currentPizzaAddition.id);
+}
+return 0;
+  }
+
   pizzaSizeSelected(selectedPizza: PizzaUnit, event:Event){
     var selectedSize:String;
-    console.log(selectedPizza +" "+ event.target.value);
-    selectedSize= event.target.value;
-    var PriceForASelectedSize=this.pizzaService.fetchPriceOfAPizzaForASelectedSize(selectedPizza,event);
+    selectedSize= (<HTMLTextAreaElement>event.target).value;
+    var PriceForASelectedSize=this.pizzaService.fetchPriceOfAPizzaForASelectedSize(selectedPizza,selectedSize);
     this.pizzaService.priceEmitter.next(PriceForASelectedSize);
-    //this.pizzaService.priceEmitter.next(selectedSize);
-   
-    
+
+  }
+
+  fetchPriceForSelectedAddition(){
+
   }
 }
