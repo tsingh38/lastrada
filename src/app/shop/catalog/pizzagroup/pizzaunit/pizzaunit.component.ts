@@ -23,8 +23,9 @@ export class PizzaunitComponent implements OnInit {
   openMealsByIndex: Boolean[] = [];
   show = 3;
 
-  orderedPizza: { id: String, name: String, size: String, listOfAdditions: PizzaAdditions[], quantity: Number, totalPrice: Number } = {
+  orderedPizza:{id: String, pizza: PizzaUnit, name: String, size: String, listOfAdditions: PizzaAdditions[], quantity: Number, totalPrice: Number}= {
     id: '',
+    pizza:null,
     name: '',
     size: '',
     listOfAdditions: null,
@@ -86,6 +87,7 @@ export class PizzaunitComponent implements OnInit {
 
   onSubmit() {
     this.orderedPizza.id = this.pizza.pizzaId;
+    this.orderedPizza.pizza=this.pizza;
     this.orderedPizza.name = this.pizza.pizzaName;
     this.orderedPizza.quantity = this.selectedQuantity;
     this.orderedPizza.size = this.selectedSize;

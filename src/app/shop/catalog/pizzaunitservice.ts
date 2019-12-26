@@ -62,41 +62,14 @@ export class PizzaUnitService{
     }
 
 
-    emitOrder(order:any){
+    emitOrder(order:{id: String, pizza: PizzaUnit, name: String, size: String, listOfAdditions: PizzaAdditions[], quantity: Number, totalPrice: Number}){
         this.cartService.pizzaOrderEmitter.next(order);
     }
 
 
 
     calculateTotalPriceForAUnit(selectedPizza: PizzaUnit, selectedPizzaSize: String, listOfCheckedPizzaAdditions: PizzaAdditions[], quantity: Number) {
-        var calculatedPrice:Number = 0;
-        switch (selectedPizzaSize) {
-            case 'Small 26': calculatedPrice = selectedPizza.pizzaPriceS;
-                break;
-            case 'Normal 28': calculatedPrice = selectedPizza.pizzaPriceN;
-                break;
-            case 'Family 32': calculatedPrice = selectedPizza.pizzaPriceF;
-                break;
-            case 'Party 38': calculatedPrice = selectedPizza.pizzaPriceP;
-                break;
-        }
-        calculatedPrice = Number(calculatedPrice) * Number(quantity);
-
-        var pizzaBaseAdditionPrice = 0;
-        for (let currentPizzaAddition of listOfCheckedPizzaAdditions) {
-            switch (selectedPizzaSize) {
-                case 'Small 26': pizzaBaseAdditionPrice = pizzaBaseAdditionPrice + +Number(Number(currentPizzaAddition.priceS) * Number(quantity)).toFixed(2);
-                    break;
-                case 'Normal 28': pizzaBaseAdditionPrice = pizzaBaseAdditionPrice + +Number(Number(currentPizzaAddition.priceN) * Number(quantity)).toFixed(2);
-                    break;
-                case 'Family 32': pizzaBaseAdditionPrice = pizzaBaseAdditionPrice + +Number(Number(currentPizzaAddition.priceF) * Number(quantity)).toFixed(2);
-                    break;
-                case 'Party 38': pizzaBaseAdditionPrice = pizzaBaseAdditionPrice + +Number(Number(currentPizzaAddition.priceP) * Number(quantity)).toFixed(2);
-                    break;
-            }
-        }
-        calculatedPrice = +calculatedPrice + pizzaBaseAdditionPrice;
-
-        return calculatedPrice;
+      
+        return this.cartService.calculateTotalPriceForAUnit(selectedPizza,selectedPizzaSize,listOfCheckedPizzaAdditions,quantity);
     }
 }
