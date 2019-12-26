@@ -5,6 +5,7 @@ import { PizzaSizes } from '../../Pizzasizes.model';
 import { PizzaUnitService } from '../../pizzaunitservice';
 import { NgForm } from '@angular/forms';
 import { ItemOrder } from '../../itemorder.model';
+import { DeepcopyUtil } from 'src/app/shop/Deepcopy';
 
 
 @Component({
@@ -89,11 +90,13 @@ export class PizzaunitComponent implements OnInit {
 
   onSubmit() {
     this.orderedPizza.id = this.pizza.pizzaId;
-    this.orderedPizza.pizza=this.pizza;
+    var localPizza:PizzaUnit =DeepcopyUtil.deepCopy(this.pizza);
+    this.orderedPizza.pizza=localPizza;
     this.orderedPizza.name = this.pizza.pizzaName;
     this.orderedPizza.quantity = this.selectedQuantity;
     this.orderedPizza.size = this.selectedSize;
-    this.orderedPizza.listOfAdditions = this.listOfCheckedPizzaAdditions;
+    var  locallistOfPizzaAdditions:PizzaAdditions[]  =DeepcopyUtil.deepCopy(this.listOfCheckedPizzaAdditions);
+    this.orderedPizza.listOfAdditions = locallistOfPizzaAdditions;
     this.orderedPizza.totalPrice = this.priceOnButton;
     this.pizzaService.emitOrder( this.orderedPizza);
 
