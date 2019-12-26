@@ -88,7 +88,7 @@ export class PizzaunitComponent implements OnInit {
     this.selectedSize = (<HTMLTextAreaElement>event.target).value;
   }
 
-  onSubmit() {
+  onSubmit(index: number) {
     this.orderedPizza.id = this.pizza.pizzaId;
     var localPizza:PizzaUnit =DeepcopyUtil.deepCopy(this.pizza);
     this.orderedPizza.pizza=localPizza;
@@ -99,6 +99,8 @@ export class PizzaunitComponent implements OnInit {
     this.orderedPizza.listOfAdditions = locallistOfPizzaAdditions;
     this.orderedPizza.totalPrice = this.priceOnButton;
     this.pizzaService.emitOrder( this.orderedPizza);
+    this.openMealsByIndex[index] = false;
+   
 
   }
 
