@@ -68,12 +68,16 @@ export class CartComponent implements OnInit, OnDestroy {
   }
   checkAdditionsInBothOrdersEqual(existingOrder: ItemOrder, newOrder: ItemOrder) {
 
-    if (existingOrder.listOfAdditions.length  !== newOrder.listOfAdditions.length ) {
+    if((existingOrder.listOfAdditions.length < 1 && newOrder.listOfAdditions.length < 1)){
       return true;
+    }
+
+    if (existingOrder.listOfAdditions.length  !== newOrder.listOfAdditions.length ) {
+      return false;
     
     }
     var matchFound: boolean = false;
-    if (existingOrder.listOfAdditions.length > 0 && newOrder.listOfAdditions.length > 0) {
+   
       if (existingOrder.listOfAdditions.length === newOrder.listOfAdditions.length) {
         for (let currentAdditionInExistingOrder of existingOrder.listOfAdditions) {
          
@@ -89,7 +93,7 @@ export class CartComponent implements OnInit, OnDestroy {
           }
         }
       }
-    }
+    
     return matchFound;
 
   }
@@ -101,24 +105,34 @@ export class CartComponent implements OnInit, OnDestroy {
     }
     else {
       for (let currentExistingOrder of this.orderedItems) {
-        if (currentExistingOrder.id === order.id && this.checkAdditionsInBothOrdersEqual(currentExistingOrder, order)) {
-          currentExistingOrder.quantity = Number(currentExistingOrder.quantity) + Number(order.quantity);
-          currentExistingOrder.totalPrice = Number(currentExistingOrder.totalPrice) + Number(order.totalPrice);
-        } else {
+        if (currentExistingOrder.id !== order.id){
           this.orderedItems.push(order);
           break;
         }
+       else if (currentExistingOrder.id === order.id){
+           if(currentExistingOrder.size=== order.size  && this.checkAdditionsInBothOrdersEqual(currentExistingOrder, order)) {
+            currentExistingOrder.quantity = Number(currentExistingOrder.quantity) + Number(order.quantity);
+            currentExistingOrder.totalPrice = Number(currentExistingOrder.totalPrice) + Number(order.totalPrice);
+            break; 
+          }
+          else {
+            this.orderedItems.push(order);
+            break;
+          }
+        } 
       }
     }
   }
 
 
   getOderAdditionsText(indexx: string): String {
-    var orderItemText: string = "mit(";
+   var existAdditionsInItem:boolean=this.orderedItems[indexx].listOfAdditions > 0;
+
+    var orderItemText: string = existAdditionsInItem ? "mit(":"";
     for (let pizzaAddition of this.orderedItems[indexx].listOfAdditions) {
       orderItemText += " " + pizzaAddition.nameOfAddition;
     }
-    orderItemText += ")";
+    orderItemText += existAdditionsInItem ? ")":"";
 
     return orderItemText;
   }
@@ -136,12 +150,10 @@ export class CartComponent implements OnInit, OnDestroy {
     this.cartService.priceCalculationEmitter.next(orderItem);
   }
   deleteTheItemFromOrder(orderItem: ItemOrder) {
-    for (let currentOrderItemInList of this.orderedItems) {
-      if (currentOrderItemInList.id === orderItem.id) {
-        this.orderedItems.splice(this.orderedItems.indexOf(currentOrderItemInList), 1);
+        this.orderedItems.splice(this.orderedItems.indexOf(orderItem), 1);
         this.cartService.priceCalculationEmitter.next(orderItem);
-      }
-    }
+      
+    
   }
 
 
