@@ -1,9 +1,11 @@
-import { Component, OnInit, Input, ViewChild } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { PizzaUnit } from '../../pizzaunit.model';
 import { PizzaAdditions } from '../../pizzaAdditions.model';
 import { PizzaSizes } from '../../Pizzasizes.model';
 import { PizzaUnitService } from '../../pizzaunitservice';
 import { NgForm } from '@angular/forms';
+import { ItemOrder } from '../../itemorder.model';
+
 
 @Component({
   selector: 'app-pizzaunit',
@@ -15,7 +17,7 @@ export class PizzaunitComponent implements OnInit {
   selectedQuantity: Number = 1;
   priceOnButton: Number = 0;
   defaultSize = 'Normal 28';
-  selectedSize: String = this.defaultSize;
+  selectedSize: string = this.defaultSize;
   allPizzaSizes: PizzaSizes[] = [];
   allPizzaItems: PizzaUnit[] = [];
   allPizzaAdditions: PizzaAdditions[] = [];
@@ -23,7 +25,7 @@ export class PizzaunitComponent implements OnInit {
   openMealsByIndex: Boolean[] = [];
   show = 3;
 
-  orderedPizza:{id: String, pizza: PizzaUnit, name: String, size: String, listOfAdditions: PizzaAdditions[], quantity: Number, totalPrice: Number}= {
+  orderedPizza:ItemOrder= {
     id: '',
     pizza:null,
     name: '',

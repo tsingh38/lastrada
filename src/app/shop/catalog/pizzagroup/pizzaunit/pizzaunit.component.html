@@ -34,7 +34,7 @@
             <div class="form-group">
                 <span class="pull-left"> Ihre Extras:</span><br>
                 <div *ngFor="let pizzaAddition of allPizzaAdditions | slice:0:show;let i = index">
-                    <input type="checkbox" value=pizzaAddition name="pizzaaddition" ngModel
+                    <input type="checkbox" value=pizzaAddition
                         (change)="fetchPriceForSelectedAddition(allPizzaAdditions[i],pizza, selectedPizzaSize,$event)" />
                     <span> mit {{pizzaAddition.nameOfAddition}}</span>
                     <span>({{displayPizzaAdditionPriceForSelectedPizzaSize(selectedPizzaSize,pizzaAddition.nameOfAddition)==0?pizzaAddition.price:displayPizzaAdditionPriceForSelectedPizzaSize(selectedPizzaSize,pizzaAddition.nameOfAddition)}}€)</span><br>

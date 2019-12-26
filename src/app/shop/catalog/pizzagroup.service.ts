@@ -11,11 +11,11 @@ export class PizzaGroupService {
         //Mock up
         var allPizzasList: PizzaUnit[] = [];
         allPizzasList.push(new PizzaUnit('1', 'Margherita', 'Große Wahl aus Small,Klein Groß Gut gebacken', 6, 7, 14, 18));
-        allPizzasList.push(new PizzaUnit('1', 'Indisch', 'Große Wahl aus Small,Klein Groß Gut gebacken', 6, 9, 11, 18));
-        allPizzasList.push(new PizzaUnit('1', 'Diavolo', 'Große Wahl aus Small,Klein Groß Gut gebacken', 7, 9, 11, 19));
-        allPizzasList.push(new PizzaUnit('1', 'Artischocken', 'Große Wahl aus Small,Klein Groß Gut gebacken', 6, 8, 9, 16));
-        allPizzasList.push(new PizzaUnit('1', 'Ananas', 'Große Wahl aus Small,Klein Groß Gut gebacken', 9, 6, 9, 13));
-        allPizzasList.push(new PizzaUnit('1', 'Salami', 'Große Wahl aus Small,Klein Groß Gut gebacken', 6, 7, 9, 45));
+        allPizzasList.push(new PizzaUnit('2', 'Indisch', 'Große Wahl aus Small,Klein Groß Gut gebacken', 6, 9, 11, 18));
+        allPizzasList.push(new PizzaUnit('3', 'Diavolo', 'Große Wahl aus Small,Klein Groß Gut gebacken', 7, 9, 11, 19));
+        allPizzasList.push(new PizzaUnit('4', 'Artischocken', 'Große Wahl aus Small,Klein Groß Gut gebacken', 6, 8, 9, 16));
+        allPizzasList.push(new PizzaUnit('5', 'Ananas', 'Große Wahl aus Small,Klein Groß Gut gebacken', 9, 6, 9, 13));
+        allPizzasList.push(new PizzaUnit('6', 'Salami', 'Große Wahl aus Small,Klein Groß Gut gebacken', 6, 7, 9, 45));
         console.log(allPizzasList);
 
         return allPizzasList;

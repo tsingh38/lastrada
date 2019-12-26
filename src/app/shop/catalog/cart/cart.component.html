@@ -8,7 +8,7 @@
             <p style="text-align: center;"><span class="glyphicon glyphicon-shopping-cart"></span></p> <br>
             <span class="emptybucket">Wähle leckere Gerichte aus der Karte und bestelle Dein Menü.</span>
         </div>
-<div class="row cart-row" *ngFor="let item of orderedItems">
+<div class="row cart-row" *ngFor="let item of orderedItems;let i = index">
     <div class="col-sm-1">
     <span>{{item.quantity}}x</span>
 </div>
@@ -17,7 +17,7 @@
     <span >{{item.name}}</span>
     <span style="font-family: 'Courier New', Courier, monospace;font-style: italic;">({{item.size}})</span></div>
     <div class="row">
-        <span style="font-family: 'Courier New', Courier, monospace;font-style: italic;">{{getOderAdditionsText(item)}}</span></div>
+        <span style="font-family: 'Courier New', Courier, monospace;font-style: italic;">{{getOderAdditionsText(i)}}</span></div>
 </div>
     <div  class="col-sm-4" style="align-content: center;">
         <button type="button" (click)="decreaseQuantity(item)" style="background-color: white;" class="btn btn-default btn-sm">

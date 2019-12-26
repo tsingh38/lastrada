@@ -3,6 +3,7 @@ import { PizzaAdditions } from './pizzaAdditions.model';
 import { PizzaUnit } from './pizzaunit.model';
 import { CartService } from './cart/cart.service';
 import { Injectable } from '@angular/core';
+import { ItemOrder } from './itemorder.model';
 @Injectable()
 export class PizzaUnitService{
 
@@ -62,7 +63,8 @@ export class PizzaUnitService{
     }
 
 
-    emitOrder(order:{id: String, pizza: PizzaUnit, name: String, size: String, listOfAdditions: PizzaAdditions[], quantity: Number, totalPrice: Number}){
+    emitOrder(order:ItemOrder){
+        console.log("emit order is called ->"+order.name+" "+order.quantity+" "+order.totalPrice);
         this.cartService.pizzaOrderEmitter.next(order);
     }
 

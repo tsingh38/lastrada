@@ -1,14 +1,14 @@
 export class PizzaUnit {
 
-    pizzaId: String;
-    pizzaName: String;
+    pizzaId: string;
+    pizzaName: string;
     pizzaPriceS: Number;
     pizzaPriceN: Number;
     pizzaPriceF: Number;
     pizzaPriceP: Number;
-    pizzaDescription: String;
+    pizzaDescription: string;
 
-    constructor(pizzaId: String, pizzaName: String, pizzaDescription: String,pizzaPriceS:Number,pizzaPriceN:Number,pizzaPriceF:Number,pizzaPriceP:Number) {
+    constructor(pizzaId: string, pizzaName: string, pizzaDescription: string,pizzaPriceS:Number,pizzaPriceN:Number,pizzaPriceF:Number,pizzaPriceP:Number) {
         this.pizzaId = pizzaId;
         this.pizzaName = pizzaName;
         this.pizzaDescription = pizzaDescription;
