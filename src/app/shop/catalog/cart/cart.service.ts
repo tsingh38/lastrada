@@ -11,6 +11,7 @@ export class CartService{
 
     pizzaOrderEmitter=new Subject<ItemOrder>();
     priceCalculationEmitter=new Subject<ItemOrder>();
+    order:ItemOrder[]=[];
 
 constructor(){
 
@@ -57,6 +58,11 @@ for(let currentOrderItem of allOrderItems){
 }
 
 
-
+isOrderSelected():boolean{
+if(this.order==null || this.order.length < 1){
+    return false;
+}
+return true;
+}
  
 }

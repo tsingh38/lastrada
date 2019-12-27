@@ -3,6 +3,7 @@ import { CartService } from './cart.service';
 import { PizzaAdditions } from '../pizzaAdditions.model';
 import { PizzaUnit } from '../pizzaunit.model';
 import { ItemOrder } from '../itemorder.model';
+import { Router } from '@angular/router';
 
 
 
@@ -20,7 +21,7 @@ export class CartComponent implements OnInit, OnDestroy {
   deliveryCharges = 2;
   OrderSum = 0;
   orderCannotBeDelivered = false;
-  constructor(private cartService: CartService) { }
+  constructor(private cartService: CartService, private router: Router) { }
   //help methode
 
 
@@ -68,33 +69,40 @@ export class CartComponent implements OnInit, OnDestroy {
   }
   checkAdditionsInBothOrdersEqual(existingOrder: ItemOrder, newOrder: ItemOrder) {
 
-    if((existingOrder.listOfAdditions.length < 1 && newOrder.listOfAdditions.length < 1)){
+    if ((existingOrder.listOfAdditions.length < 1 && newOrder.listOfAdditions.length < 1)) {
       return true;
     }
 
-    if (existingOrder.listOfAdditions.length  !== newOrder.listOfAdditions.length ) {
+    if (existingOrder.listOfAdditions.length !== newOrder.listOfAdditions.length) {
       return false;
-    
+
     }
     var matchFound: boolean = false;
-   
-      if (existingOrder.listOfAdditions.length === newOrder.listOfAdditions.length) {
-        for (let currentAdditionInExistingOrder of existingOrder.listOfAdditions) {
-         
-          for (let currentAdditionInNewOrder of newOrder.listOfAdditions) {
-            if (currentAdditionInExistingOrder.id == currentAdditionInNewOrder.id) {
-              matchFound = true;
-            }else{
-              matchFound=false;
-            }
-          }
-          if (!matchFound) {
-            return false;
+
+    if (existingOrder.listOfAdditions.length === newOrder.listOfAdditions.length) {
+      for (let currentAdditionInExistingOrder of existingOrder.listOfAdditions) {
+
+        for (let currentAdditionInNewOrder of newOrder.listOfAdditions) {
+          if (currentAdditionInExistingOrder.id == currentAdditionInNewOrder.id) {
+            matchFound = true;
+          } else {
+            matchFound = false;
           }
         }
+        if (!matchFound) {
+          return false;
+        }
       }
-    
+    }
+
     return matchFound;
+
+  }
+
+
+  submitOrder() {
+    this.cartService.order = this.orderedItems;
+    this.router.navigate(['/customer']);
 
   }
 
@@ -105,34 +113,34 @@ export class CartComponent implements OnInit, OnDestroy {
     }
     else {
       for (let currentExistingOrder of this.orderedItems) {
-        if (currentExistingOrder.id !== order.id){
+        if (currentExistingOrder.id !== order.id) {
           this.orderedItems.push(order);
           break;
         }
-       else if (currentExistingOrder.id === order.id){
-           if(currentExistingOrder.size=== order.size  && this.checkAdditionsInBothOrdersEqual(currentExistingOrder, order)) {
+        else if (currentExistingOrder.id === order.id) {
+          if (currentExistingOrder.size === order.size && this.checkAdditionsInBothOrdersEqual(currentExistingOrder, order)) {
             currentExistingOrder.quantity = Number(currentExistingOrder.quantity) + Number(order.quantity);
             currentExistingOrder.totalPrice = Number(currentExistingOrder.totalPrice) + Number(order.totalPrice);
-            break; 
+            break;
           }
           else {
             this.orderedItems.push(order);
             break;
           }
-        } 
+        }
       }
     }
   }
 
 
   getOderAdditionsText(indexx: string): String {
-   var existAdditionsInItem:boolean=this.orderedItems[indexx].listOfAdditions > 0;
+    var existAdditionsInItem: boolean = this.orderedItems[indexx].listOfAdditions > 0;
 
-    var orderItemText: string = existAdditionsInItem ? "mit(":"";
+    var orderItemText: string = existAdditionsInItem ? "mit(" : "";
     for (let pizzaAddition of this.orderedItems[indexx].listOfAdditions) {
       orderItemText += " " + pizzaAddition.nameOfAddition;
     }
-    orderItemText += existAdditionsInItem ? ")":"";
+    orderItemText += existAdditionsInItem ? ")" : "";
 
     return orderItemText;
   }
@@ -150,10 +158,10 @@ export class CartComponent implements OnInit, OnDestroy {
     this.cartService.priceCalculationEmitter.next(orderItem);
   }
   deleteTheItemFromOrder(orderItem: ItemOrder) {
-        this.orderedItems.splice(this.orderedItems.indexOf(orderItem), 1);
-        this.cartService.priceCalculationEmitter.next(orderItem);
-      
-    
+    this.orderedItems.splice(this.orderedItems.indexOf(orderItem), 1);
+    this.cartService.priceCalculationEmitter.next(orderItem);
+
+
   }
 
 

@@ -7,7 +7,7 @@ import { CartService } from './catalog/cart/cart.service';
   selector: 'app-shop',
   templateUrl: './shop.component.html',
   styleUrls: ['./shop.component.scss'],
-  providers:[PizzaGroupService,PizzaUnitService,CartService]
+  providers:[PizzaGroupService,PizzaUnitService]
 })
 export class ShopComponent implements OnInit {
 

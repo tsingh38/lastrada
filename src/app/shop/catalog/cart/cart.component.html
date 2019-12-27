@@ -62,5 +62,5 @@
 </div>
 <div>
     <button style="margin-left:3rem;margin-right: -2px;" [disabled]="this.orderedItems.length < 1"
-        class="btn btn-primary btn-lg btn-block">Bestellen</button>
+        class="btn btn-primary btn-lg btn-block" (click)="submitOrder()">Bestellen</button>
 </div>

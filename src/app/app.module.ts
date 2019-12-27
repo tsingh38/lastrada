@@ -20,6 +20,9 @@ import { NotFoundComponent } from './shop/catalog/not-found/not-found.component'
 import { CatalogComponent } from './shop/catalog/catalog/catalog.component';
 import { PizzaunitComponent } from './shop/catalog/pizzagroup/pizzaunit/pizzaunit.component';
 import { CartComponent } from './shop/catalog/cart/cart.component';
+import { CustomerInformationComponent } from './shop/customer-information/customer-information.component';
+import { AuthGuardService } from './auth-guard.service';
+import { CartService } from './shop/catalog/cart/cart.service';
 
 const appRoutes: Routes = [
   {
@@ -31,7 +34,7 @@ const appRoutes: Routes = [
       { path: 'Drink', component: DrinkgroupComponent },
       { path: '**', component: NotFoundComponent }
     ]
-  },{
+  },{path: 'customer',canActivate:[AuthGuardService], component:CustomerInformationComponent},{
   path: '', redirectTo: '/shop', pathMatch:'full'},
 ];
 @NgModule({
@@ -51,12 +54,13 @@ const appRoutes: Routes = [
     NotFoundComponent,
     CatalogComponent,
     CartComponent,
-    PizzaunitComponent
+    PizzaunitComponent,
+  CustomerInformationComponent
   ],
   imports: [
     BrowserModule, NgbModule, RouterModule, FormsModule, RouterModule.forRoot(appRoutes)
   ],
-  providers: [ShopService],
+  providers: [ShopService,AuthGuardService,CartService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
