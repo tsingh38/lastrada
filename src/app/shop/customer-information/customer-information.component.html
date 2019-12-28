@@ -8,14 +8,14 @@
             <div class="col-sm-6">
                 <div class="form-group">
                     <label>Adresse</label> <br>
-                    <input type="text" class="form-control" id="Address" name="Address" ngModel required #address="ngModel">
+                    <input type="text" class="form-control" id="Address" name="Address" [(ngModel)]="customeraddress" required #address="ngModel">
                     <span class="help-block" *ngIf="!address.valid && address.touched">*Bitte gultige Adresse eingeben</span>
                 </div>
             </div>
             <div class="col-sm-3">
                 <div class="form-group">
                     <label>Postlietzahl</label> <br>
-                    <input type="text" class="form-control" id="pincode" name="pincode" ngModel required #pincode="ngModel">
+                    <input type="text" class="form-control" id="pincode" name="pincode" [(ngModel)]="customerpincode" required #pincode="ngModel">
                     <span class="help-block" *ngIf="!pincode.valid && pincode.touched">*Bitte gultige Postleitzahl eingeben</span>
 
                 </div>
@@ -23,7 +23,7 @@
             <div class="col-sm-3">
                 <div class="form-group">
                     <label>Stadt</label> <br>
-                    <input type="text" class="form-control" id="city" name="city" ngModel required #city="ngModel">
+                    <input type="text" class="form-control" id="city" name="city" [(ngModel)]="customerCity" required #city="ngModel">
                     <span class="help-block" *ngIf="!city.valid && city.touched">*Bitte gultige Stadt eingeben</span>
 
                 </div>
@@ -33,7 +33,7 @@
             <div class="col-sm-6 pull-left">
                 <div class="form-group">
                     <label>ETage</label> <br>
-                    <input type="text" class="form-control" id="floor" name="floor" ngModel>
+                    <input type="text" class="form-control" id="floor" name="floor" [(ngModel)]="floor">
                 </div>
             </div>
         </div>
@@ -46,7 +46,7 @@
             <div class="col-sm-6 pull-left">
                 <div class="form-group">
                     <label>Name</label> <br>
-                    <input type="text" class="form-control" id="customerName" name="customerName" ngModel required #name="ngModel">
+                    <input type="text" class="form-control" id="customerName" name="customerName" [(ngModel)]="customerName" required #name="ngModel">
                     <span class="help-block" *ngIf="!name.valid && name.touched">*Bitte gultige Name eingeben</span>
 
                 </div>
@@ -54,7 +54,7 @@
             <div class="col-sm-6 pull-right">
                 <div class="form-group">
                     <label>E-Mail</label> <br>
-                    <input type="text" class="form-control" id="email" name="email" ngModel email #email="ngModel">
+                    <input type="text" class="form-control" id="email" name="email" [(ngModel)]="customerEmail" email #email="ngModel">
                     <span class="help-block" *ngIf="!email.valid && email.touched">*Bitte gultige Email eingeben</span>
 
                 </div>
@@ -64,7 +64,7 @@
             <div class="col-sm-6 pull-left">
                 <div class="form-group">
                     <label>Telefonnummer</label> <br>
-                    <input type="text" class="form-control" id="telphonenumber" name="telphonenumber" ngModel required #telefonnummer>
+                    <input type="text" class="form-control" id="telphonenumber" name="telphonenumber" [(ngModel)]="phonenumber" required #telefonnummer>
                     <span class="help-block" *ngIf="!telefonnummer.valid && telefonnummer.touched">*Bitte gultige Telefonnummer eingeben</span>
 
                 </div>
@@ -72,7 +72,7 @@
             <div class="col-sm-6 pull-right">
                 <div class="form-group">
                     <label>Firmenname</label> <br>
-                    <input type="text" class="form-control" id="companyname" name="companyname" ngModel>
+                    <input type="text" class="form-control" id="companyname" name="companyname" [(ngModel)]="companyname">
                 </div>
             </div> 
         </div>
@@ -81,7 +81,7 @@
         </div>
         <hr>
         <div class="row">
-            <div class="col-sm-3 pull-left">
+            <div class="col-sm-4 pull-left">
                 <div class="form-group">
                     <label>Gewünschte Lieferzeit</label> <br>
                     <select id="wishdeliverytime" class="form-control"
@@ -96,7 +96,7 @@
             <div class="col-sm-6 pull-right">
                 <div class="form-group">
                     <label>Anmerkungen für das Restaurant</label> <br>
-                    <textarea rows="5"  cols="50" name="comment" ngModel>Anmerkungen für uns...</textarea>
+                    <textarea rows="5"  cols="50" name="comment" [(ngModel)]="comment">Anmerkungen für uns...</textarea>
                 </div>
             </div> 
         </div>

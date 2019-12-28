@@ -35,8 +35,8 @@ const appRoutes: Routes = [
       { path: 'Drink', component: DrinkgroupComponent },
       { path: '**', component: NotFoundComponent }
     ]
-  //},{path: 'customer',canActivate:[AuthGuardService], component:CustomerInformationComponent},{
-  },{path: 'customer', component:CustomerInformationComponent},{
+  },{path: 'customer',canActivate:[AuthGuardService], component:CustomerInformationComponent},{
+
     path: '', redirectTo: '/shop', pathMatch:'full'},
 ];
 @NgModule({
