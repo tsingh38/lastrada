@@ -2,8 +2,9 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { CartService } from '../catalog/cart/cart.service';
 import { NgForm } from '@angular/forms';
 import { CustomerInformationService } from './CustomerInformationService';
-import { customerInformationModel, customerInformationAndOrderModel } from '../customerInformation.model';
+import { customerInformationAndOrderModel } from '../customerInformation.model';
 import { DeepcopyUtil } from '../Deepcopy';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -21,7 +22,7 @@ export class CustomerInformationComponent implements OnInit {
   phonenumber:string;
   companyname:string;
   comment:string;
-  constructor(private customerInformationService:CustomerInformationService) { }
+  constructor( private router:Router, private customerInformationService:CustomerInformationService) { }
   @ViewChild('f', { static: false }) formRef: NgForm;
   allTimeSlots:string[]=[];
   defaultPaymentType='Bar';
@@ -51,6 +52,7 @@ export class CustomerInformationComponent implements OnInit {
       this.comment,
       this.defaultPaymentType,this.customerInformationService.getCustomerOrder());
       this.customerInformationService.processCustomerOrder(DeepcopyUtil.deepCopy(customerInformation));
+      this.router.navigate(['/completed']);
     }
   }
 

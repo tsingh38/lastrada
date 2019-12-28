@@ -24,6 +24,7 @@ import { CustomerInformationComponent } from './shop/customer-information/custom
 import { AuthGuardService } from './auth-guard.service';
 import { CartService } from './shop/catalog/cart/cart.service';
 import { CustomerInformationService } from './shop/customer-information/CustomerInformationService';
+import { OrdersuccessfulComponent } from './shop/ordersuccessful/ordersuccessful.component';
 
 const appRoutes: Routes = [
   {
@@ -35,8 +36,10 @@ const appRoutes: Routes = [
       { path: 'Drink', component: DrinkgroupComponent },
       { path: '**', component: NotFoundComponent }
     ]
-  },{path: 'customer',canActivate:[AuthGuardService], component:CustomerInformationComponent},{
-
+  },{
+    path: 'customer',canActivate:[AuthGuardService], component:CustomerInformationComponent},
+   {path: 'completed',canActivate:[AuthGuardService], component:OrdersuccessfulComponent},
+  {
     path: '', redirectTo: '/shop', pathMatch:'full'},
 ];
 @NgModule({
@@ -57,7 +60,8 @@ const appRoutes: Routes = [
     CatalogComponent,
     CartComponent,
     PizzaunitComponent,
-  CustomerInformationComponent
+  CustomerInformationComponent,
+  OrdersuccessfulComponent
   ],
   imports: [
     BrowserModule, NgbModule, RouterModule, FormsModule, RouterModule.forRoot(appRoutes)

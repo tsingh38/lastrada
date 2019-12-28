@@ -43,7 +43,10 @@ export class CustomerInformationService {
     getCustomerOrder(){
         return this.cartService.order;
     }
-
+    fetchCompletedOrderNumber(){
+        //TODO Rest aufruf
+        return '1459685';
+    }
 
 
 }
