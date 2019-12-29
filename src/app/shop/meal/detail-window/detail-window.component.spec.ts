@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AllmealsgroupComponent } from './allmealsgroup.component';
+import { DetailWindowComponent } from './detail-window.component';
 
-describe('AllmealsgroupComponent', () => {
-  let component: AllmealsgroupComponent;
-  let fixture: ComponentFixture<AllmealsgroupComponent>;
+describe('DetailWindowComponent', () => {
+  let component: DetailWindowComponent;
+  let fixture: ComponentFixture<DetailWindowComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AllmealsgroupComponent ]
+      declarations: [ DetailWindowComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AllmealsgroupComponent);
+    fixture = TestBed.createComponent(DetailWindowComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

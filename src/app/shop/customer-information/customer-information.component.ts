@@ -1,9 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { CartService } from '../catalog/cart/cart.service';
+import { CartService } from '../../services/cart.service';
 import { NgForm } from '@angular/forms';
 import { CustomerInformationService } from './CustomerInformationService';
-import { customerInformationAndOrderModel } from '../customerInformation.model';
-import { DeepcopyUtil } from '../Deepcopy';
+import { customerInformationAndOrderModel } from '../../models/customerInformation.model';
+import { DeepcopyUtil } from '../../services/Deepcopy';
 import { Router } from '@angular/router';
 
 

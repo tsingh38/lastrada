@@ -1,6 +1,6 @@
-import { CartService } from '../catalog/cart/cart.service';
+import { CartService } from '../../services/cart.service';
 import { Injectable } from '@angular/core';
-import { customerInformationAndOrderModel } from '../customerInformation.model';
+import { customerInformationAndOrderModel } from '../../models/customerInformation.model';
 
 @Injectable()
 export class CustomerInformationService {

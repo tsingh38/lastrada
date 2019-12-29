@@ -5,36 +5,24 @@ import { AppComponent } from './app.component';
 import { ShopComponent } from './shop/shop.component';
 import { HeaderComponent } from './shop/header/header.component';
 import { FooterComponent } from './shop/footer/footer.component';
-import { DropdownDirective } from './directives/dropdown.directive';
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { NavbarComponent } from './shop/catalog/navbar/navbar.component';
-import { DynamicWidthOfElementDirective } from './directives/dynamic-width-of-element.directive';
-import { ShopService } from './shop/shopservice';
-import { PizzagroupComponent } from './shop/catalog/pizzagroup/pizzagroup.component';
-import { IndischgroupComponent } from './shop/catalog/indischgroup/indischgroup.component';
-import { SalatgroupComponent } from './shop/catalog/salatgroup/salatgroup.component';
-import { DrinkgroupComponent } from './shop/catalog/drinkgroup/drinkgroup.component';
-import { AllmealsgroupComponent } from './shop/catalog/allmealsgroup/allmealsgroup.component';
 import { NotFoundComponent } from './shop/catalog/not-found/not-found.component';
-import { CatalogComponent } from './shop/catalog/catalog/catalog.component';
-import { PizzaunitComponent } from './shop/catalog/pizzagroup/pizzaunit/pizzaunit.component';
 import { CartComponent } from './shop/catalog/cart/cart.component';
 import { CustomerInformationComponent } from './shop/customer-information/customer-information.component';
-import { AuthGuardService } from './auth-guard.service';
-import { CartService } from './shop/catalog/cart/cart.service';
+import { AuthGuardService } from './services/auth-guard.service';
+import { CartService } from './services/cart.service';
 import { CustomerInformationService } from './shop/customer-information/CustomerInformationService';
 import { OrdersuccessfulComponent } from './shop/ordersuccessful/ordersuccessful.component';
+import { MealComponent } from './shop/meal/meal.component';
+import { MealService } from './services/mealservice';
+import { DetailWindowComponent } from './shop/meal/detail-window/detail-window.component';
 
 const appRoutes: Routes = [
   {
     path: 'shop', component: ShopComponent, children: [
-      { path: '', component: AllmealsgroupComponent },
-      { path: 'Pizza', component: PizzagroupComponent },
-      { path: 'Indisch', component: IndischgroupComponent },
-      { path: 'Salat', component: SalatgroupComponent },
-      { path: 'Drink', component: DrinkgroupComponent },
-      { path: '**', component: NotFoundComponent }
+      { path: ':id', component: MealComponent }
     ]
   },{
     path: 'customer',canActivate:[AuthGuardService], component:CustomerInformationComponent},
@@ -48,25 +36,18 @@ const appRoutes: Routes = [
     ShopComponent,
     HeaderComponent,
     FooterComponent,
-    DropdownDirective,
     NavbarComponent,
-    DynamicWidthOfElementDirective,
-    IndischgroupComponent,
-    SalatgroupComponent,
-    PizzagroupComponent,
-    DrinkgroupComponent,
-    AllmealsgroupComponent,
     NotFoundComponent,
-    CatalogComponent,
     CartComponent,
-    PizzaunitComponent,
   CustomerInformationComponent,
-  OrdersuccessfulComponent
+  OrdersuccessfulComponent,
+  MealComponent,
+  DetailWindowComponent
   ],
   imports: [
     BrowserModule, NgbModule, RouterModule, FormsModule, RouterModule.forRoot(appRoutes)
   ],
-  providers: [ShopService,AuthGuardService,CartService,CustomerInformationService],
+  providers: [AuthGuardService,CartService,CustomerInformationService,MealService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

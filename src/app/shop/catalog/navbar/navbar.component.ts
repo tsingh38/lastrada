@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ShopService } from '../../shopservice';
 
 @Component({
   selector: 'app-navbar',
@@ -10,7 +9,7 @@ export class NavbarComponent implements OnInit {
 menuBarItemsAll:String[]=['Pizza','Indisch','Salat','Italinisch','Drink','AlkohalfreiGetäanke','Pide','Donör','Something1','Someething2','AlkohalfreiGetäanke','Something3','Someething21','Someething25']
 isSearchBarActive=false;
 
-constructor(private shopService : ShopService) {
+constructor() {
  }
 
   ngOnInit() {
