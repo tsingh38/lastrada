@@ -1,8 +1,8 @@
 import { Component, OnInit, OnChanges, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
-import { CartService } from '../../../services/cart.service';
-import { PizzaAdditions } from '../../../models/pizzaAdditions.model';
-import { PizzaUnit } from '../../../models/pizzaunit.model';
-import { ItemOfOrder } from '../../../models/itemorder.model';
+import { CartService } from '../../services/cart.service';
+import { PizzaAdditions } from '../../models/pizzaAdditions.model';
+import { PizzaUnit } from '../../models/pizzaunit.model';
+import { ItemOfOrder } from '../../models/itemorder.model';
 import { Router } from '@angular/router';
 
 
