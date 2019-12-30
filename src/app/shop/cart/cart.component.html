@@ -8,7 +8,7 @@
             <p style="text-align: center;"><span class="glyphicon glyphicon-shopping-cart"></span></p> <br>
             <span class="emptybucket">Wähle leckere Gerichte aus der Karte und bestelle Dein Menü.</span>
         </div>
-<div class="row" *ngFor="let item of orderedItems;let i = index">
+<div class="row" *ngFor="let item of orderedItems;let i = index" style="width:425px">
     <div class="col-sm-1">
     <span>{{item.quantity}}</span>
     <span  style="color:#7d7d7d; font-size: 10px;">x</span>       
