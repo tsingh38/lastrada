@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { MealService } from '../../services/mealservice';
 import { ActivatedRoute } from '@angular/router';
 import { Product } from 'src/app/models/product.model';
+import { ItemOfOrder } from 'src/app/models/itemorder.model';
+import { DeepcopyUtil } from 'src/app/services/Deepcopy';
 
 
 @Component({
@@ -14,7 +16,7 @@ export class MealComponent implements OnInit {
   activeUrl:string;
   itemsToDisplay: Product[] = [];
   openMealsByIndex: Boolean[] = [];
-  constructor(private mealService:MealService,private route:ActivatedRoute) { 
+  constructor(private mealService:MealService, private route:ActivatedRoute) { 
     this.mealService.fetchAllItems();
   }
 
@@ -40,17 +42,35 @@ export class MealComponent implements OnInit {
   }
 
 
-  displayPlusSign(index: number,currentProduct:Product): boolean{
-   if(!this.isProductDetailedWindowOpen(index) && 
-     (currentProduct.productAdditions.length > 0 ||
-        currentProduct.productOptions.length > 0)){
+  displayPlusSign(index: number): boolean{
+   if(!this.isProductDetailedWindowOpen(index)){
      return true;
    }
    return false;
   }
 
-  openProductDetailWindow(index: number) {
-    this.openMealsByIndex[index] = true;
+  openProductDetailWindow(index: number,currentProduct:Product) {
+ 
+    if(currentProduct.productOptions.length < 1 && currentProduct.productAdditions.length < 1){
+     var order:ItemOfOrder={  id: '',
+     product:null,
+     name: '',
+     selectedOption : null,
+     listOfAdditions: null,
+     quantity: 0,
+     totalPrice: 0};
+     
+     order.id = currentProduct.productId+"";
+      var localProduct:Product =DeepcopyUtil.deepCopy(currentProduct);
+      order.product=localProduct;
+      order.name = localProduct.productName;
+      order.quantity = 1;
+      order.totalPrice = currentProduct.productUnitPrice;
+      this.mealService.submitShortOrder(order);
+
+    }else{
+      this.openMealsByIndex[index] = true;
+    }
   }
   closeProductDetailWindow(index: number) {
     this.openMealsByIndex[index] = false;

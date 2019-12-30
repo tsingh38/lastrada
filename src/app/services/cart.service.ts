@@ -30,6 +30,7 @@ for(let currentOrderItem of allOrderItems){
  calculatePriceOfAProduct(selectedProduct:Product,selectedOption:Options,selectedAdditions:Additions[],quantity:number,isProductAPizza:boolean){
 var additionsCalculation:number=0;
 var baseCalculation:number=0;
+if(selectedAdditions!=null){
 for(let currentAddition of selectedAdditions){
     if(isProductAPizza){
         switch(selectedOption.optionName){
@@ -44,6 +45,7 @@ for(let currentAddition of selectedAdditions){
     }else{
         additionsCalculation=+additionsCalculation+Number(Number(currentAddition.additionsPrice*quantity).toFixed(2));
     }
+}
 }
 
 if(isProductAPizza){

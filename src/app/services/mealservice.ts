@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Product, Options ,Additions} from '../models/product.model';
 import { CartService } from './cart.service';
 import { Subject } from 'rxjs';
+import { ItemOfOrder } from '../models/itemorder.model';
 
 
 @Injectable()
@@ -14,6 +15,10 @@ export class MealService {
     fetchAllItems() {
         //TODO Rest call to fetch all the items 
         this.allItems = this.getDummyData();
+    }
+
+    submitShortOrder(orderedItem:ItemOfOrder){
+        this.cartService.pizzaOrderEmitter.next(orderedItem);
     }
 
     fetchItemsForActiveUrl(url: string) {
@@ -65,10 +70,12 @@ export class MealService {
         var allAdditions:Additions[]=[];
         allAdditions.push(Additions6);
         var product4:Product=new Product(14456,3,'Indisch','Bhartha','Bio Auberginne',9.5,allAdditions,[]);
+        var product5:Product=new Product(14457,9,'Drink','Cola','Coca Cola enthät caffeine 10mg per 100ml',2.30,[],[]);
         returnItems.push(product1);
         returnItems.push(product2);
         returnItems.push(product3);
         returnItems.push(product4);
+        returnItems.push(product5);
         return returnItems;
     }
 

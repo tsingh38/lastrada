@@ -7,7 +7,7 @@
         <p style="font-weight: bold;">{{product.productUnitPrice}}€</p>
     </div>
     <div class="col-sm-6">
-        <a *ngIf="displayPlusSign(i,product)" (click)="openProductDetailWindow(i)">
+        <a *ngIf="displayPlusSign(i,product)" (click)="openProductDetailWindow(i,product)">
             <span class="glyphicon glyphicon-plus pull-right"></span>
         </a>
         <a *ngIf="isProductDetailedWindowOpen(i)" (click)="closeProductDetailWindow(i)">

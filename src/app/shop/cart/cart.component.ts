@@ -125,7 +125,9 @@ export class CartComponent implements OnInit, OnDestroy {
 
   getOderAdditionsText(indexx: string): String {
     var existAdditionsInItem: boolean = this.orderedItems[indexx].listOfAdditions > 0;
-
+if( this.orderedItems[indexx].listOfAdditions===null){
+  return "";
+}
     var orderItemText: string = existAdditionsInItem ? "mit(" : "";
     for (let pizzaAddition of this.orderedItems[indexx].listOfAdditions) {
       orderItemText += " " + pizzaAddition.nameOfAddition;
