@@ -4,6 +4,7 @@ import { PizzaAdditions } from '../../models/pizzaAdditions.model';
 import { PizzaUnit } from '../../models/pizzaunit.model';
 import { ItemOfOrder } from '../../models/itemorder.model';
 import { Router } from '@angular/router';
+import { Product } from 'src/app/models/product.model';
 
 
 
@@ -130,11 +131,16 @@ if( this.orderedItems[indexx].listOfAdditions===null){
 }
     var orderItemText: string = existAdditionsInItem ? "mit(" : "";
     for (let pizzaAddition of this.orderedItems[indexx].listOfAdditions) {
-      orderItemText += " " + pizzaAddition.nameOfAddition;
+      orderItemText += " " + pizzaAddition.additionsName;
     }
     orderItemText += existAdditionsInItem ? ")" : "";
 
     return orderItemText;
+  }
+
+
+  getProductDescription(item:Product){
+    
   }
 
   increaseQuantity(orderItem: ItemOfOrder) {
