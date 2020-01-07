@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 import { PizzaAdditions } from '../models/pizzaAdditions.model';
-import { PizzaUnit } from '../models/pizzaunit.model';
 import { ItemOfOrder } from '../models/itemorder.model';
 import { Product, Options, Additions } from 'src/app/models/product.model';
 

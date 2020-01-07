@@ -18,12 +18,19 @@ import { OrdersuccessfulComponent } from './shop/ordersuccessful/ordersuccessful
 import { MealComponent } from './shop/meal/meal.component';
 import { MealService } from './services/mealservice';
 import { DetailWindowComponent } from './shop/meal/detail-window/detail-window.component';
+import { ControlpanelComponent } from './controlpanel/controlpanel.component';
+import { OrdersOverviewComponent } from './controlpanel/orders-overview/orders-overview.component';
+import { ControlPanelService } from './services/controlpanel.service';
+import { HttpClientModule } from '@angular/common/http';
+import { HttpUtil } from './services/httpUtil.service';
 
 const appRoutes: Routes = [
   {
     path: 'shop', component: ShopComponent, children: [
       { path: ':id', component: MealComponent }
     ]
+  },{
+    path:'controlpanel', component:ControlpanelComponent
   },{
     path: 'customer',canActivate:[AuthGuardService], component:CustomerInformationComponent},
    {path: 'completed',canActivate:[AuthGuardService], component:OrdersuccessfulComponent},
@@ -42,12 +49,14 @@ const appRoutes: Routes = [
   CustomerInformationComponent,
   OrdersuccessfulComponent,
   MealComponent,
-  DetailWindowComponent
+  DetailWindowComponent,
+  ControlpanelComponent,
+  OrdersOverviewComponent
   ],
   imports: [
-    BrowserModule, NgbModule, RouterModule, FormsModule, RouterModule.forRoot(appRoutes)
+    BrowserModule, NgbModule, RouterModule, FormsModule,HttpClientModule, RouterModule.forRoot(appRoutes)
   ],
-  providers: [AuthGuardService,CartService,CustomerInformationService,MealService],
+  providers: [AuthGuardService,CartService,CustomerInformationService,MealService,ControlPanelService,HttpUtil],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
